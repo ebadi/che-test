@@ -452,7 +452,205 @@
   </footer>
 
 
+
+  <script src="template/dist/script.js"></script>
+
   <script src="chedokucode/script.js"></script>
+
+  <script type="text/javascript">//<![CDATA[
+
+    var game = new Chess();
+    var allSquares = ['a1', 'a2', 'a3', 'a4', 'a5', 'a6', 'a7', 'a8', 'b1', 'b2', 'b3', 'b4', 'b5', 'b6', 'b7', 'b8', 'c1', 'c2', 'c3', 'c4', 'c5', 'c6', 'c7', 'c8', 'd1', 'd2', 'd3', 'd4', 'd5', 'd6', 'd7', 'd8', 'e1', 'e2', 'e3', 'e4', 'e5', 'e6', 'e7', 'e8', 'f1', 'f2', 'f3', 'f4', 'f5', 'f6', 'f7', 'f8', 'g1', 'g2', 'g3', 'g4', 'g5', 'g6', 'g7', 'g8', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'h7', 'h8'];
+    var defenders = []
+    var attackers = []
+    var values = []
+    var puzzlePieces = {}
+    var puzzleSolution = {}
+    var puzzleNumbers = {}
+    var sparePieces = true
+    var dropOffBoard = 'snapback'
+    var default_puzzleID = 1
+    var default_level = 3
+    var current_level = default_level
+    var current_puzzle_timer = new Date().getTime();
+    var current_puzzle_moves = 0
+    var allPuzzles
+    var hashParams = []
+    var user_game_results = {}
+    user_game_results[current_level] = {}
+    var index = 1
+    var boardtag = $('#board')
+    var game = new Chess()
+    var squareClass = 'square-55d63'
+    var squareToHighlight = null
+    var squareSource = null
+    var squareDestination = null
+    var current_draggable = false
+    var current_showhint = true
+
+    function isTouchDevice() {
+      return (('ontouchstart' in window) ||
+        (navigator.maxTouchPoints > 0) ||
+        (navigator.msMaxTouchPoints > 0));
+    }
+    if (isTouchDevice()) {
+      current_draggable = false
+      document.getElementById("switch-move").checked = true
+      document.getElementById("switch-move").value = "off"
+    } else {
+      //console.log("PC, click move")
+      current_draggable = true
+      document.getElementById("switch-move").checked = false
+      document.getElementById("switch-move").value = "on"
+    }
+
+    $('#reset').on('click', function () {
+      reset()
+      boardChangedUpdateGame();
+    })
+
+    $('#dailybutton').on('click', function () {
+      console.log("daily")
+      disable_all_components()
+      daily()
+    })
+    $('#solution').on('click', function () {
+      var cfg = {
+        dropOffBoard: dropOffBoard,
+        sparePieces: sparePieces,
+        draggable: current_draggable,
+        position: puzzleSolution,
+        onDrop: onDrop,
+        onMoveEnd: onMoveEnd,
+        onChange: onChange,
+        onSnapEnd: onSnapEnd,
+        showNotation: false
+      };
+      board.clear(false)
+      board.destroy()
+      board = ChessBoard('board', cfg);
+      $(window).resize(board.resize)
+      current_puzzle_timer = new Date().getTime();
+      boardChangedUpdateGame();
+    })
+
+
+    $(document).ready(function () {
+
+      $('.popup-overlay').css("display", "flex").hide().fadeIn();
+
+      $('a.popup-daily').click(function () {
+        $('.popup-overlay').fadeOut();
+        daily()
+      });
+
+      $('a.popup-tutorial').click(function () {
+        $('.popup-overlay').fadeOut();
+        tutorial()
+      });
+
+      $('a.popup-rules').click(function () {
+        $('.popup-overlay').fadeOut();
+        rules()
+      });
+
+      $('a.popup-subscription').click(function () {
+        $('.popup-overlay').fadeOut();
+        subscription()
+      });
+
+      $('a.popup-levelpuzzle').click(function () {
+        $('.popup-overlay').fadeOut();
+        //levelpuzzle()
+      });
+
+
+      $('input[id="switch-move"]').click(function () {
+        current_draggable = !$(this).prop("checked")
+        reset();
+        boardChangedUpdateGame();
+      });
+
+      $('input[id="switch-hint"]').click(function () {
+        current_showhint = !$(this).prop("checked")
+        reset();
+        boardChangedUpdateGame();
+      });
+      if (window.location.hash.includes('daily')) {
+        daily()
+      } else if (window.location.hash.includes('tutorial')) {
+        tutorial()
+      } else if (window.location.hash.includes('rules')) {
+        rules()
+      } else if (window.location.hash.includes('about')) {
+        about()
+      }
+      else {
+        levelPuzzle()
+      }
+    });
+
+    $('#next').on('click', function () {
+      cuteToast(type = "reset", message = '')
+      loadGame('undefined', 'undefined')
+    })
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key.toLowerCase() === 'y' && e.altKey) {
+        // Add your code here
+        var valuesDict = new Object();
+        for (var i = 0; i < values.length; i++) {
+          //console.log(i, valuesDict, values[i], index2square(i))
+          if (values[i] != 0 && !(index2square(i) in board.position())) {
+            valuesDict[index2square(i)] = values[i]
+          }
+        }
+        cuteToast(type = "success", message = JSON.stringify(board.position()) + JSON.stringify(valuesDict))
+      } else if (e.key.toLowerCase() === 'n' && e.altKey) {
+        puzzleSolution = {}
+        puzzlePieces = {}
+        puzzleNumbers = {}
+        values = []
+        sparePieces = true
+        dropOffBoard = 'trash'
+        reset()
+        boardChangedUpdateGame();
+      }
+    });
+
+    hashParams = parseHash()
+
+    try {
+      current_puzzleID = hashParams['gid']
+      current_level = hashParams['d']
+      if (current_puzzleID === undefined || current_level === undefined) {
+        current_level = default_level
+        current_puzzleID = default_puzzleID
+        homepuzzle()
+      }
+    } catch (e) {
+      current_level = default_level
+      current_puzzleID = default_puzzleID
+    }
+
+
+    $(function () {
+      $("#slider-range-min").slider({
+        range: "min",
+        value: current_level,
+        min: 1,
+        max: 20,
+        slide: function (event, ui) {
+          $("#level").val(ui.value);
+          current_level = ui.value
+          current_puzzleID = default_puzzleID
+          loadAllPuzzles(current_level)
+          cuteToast(type = "reset", message = '')
+          loadGame(current_level, current_puzzleID)
+        }
+      });
+    });
+  </script>
 
 
   <script src="firebase/app.js"></script> <!-- THIS LINE HAS TO BE IN THE BODY, NOT IN HEAD-->
