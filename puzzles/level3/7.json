@@ -1,0 +1,8 @@
+
+    {
+            "puzzlePieces" : {  "g1":"wB", "h7":"wN" }      ,
+            "puzzleSolution" : {  "g1":"wB", "h7":"wN" }    ,
+            "puzzleNumbers" : {  "f2":1, "h2":1, "e3":1, "d4":1, "c5":1, "g5":1, "b6":1, "f6":1, "a7":1, "f8":1 }     ,
+            "sparePieces" : false,
+            "strictSolution" : false
+    }
