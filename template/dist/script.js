@@ -184,8 +184,8 @@ function homepuzzle(nextActive= true){
 }
 
 function daily(){
-  current_level = 365;
-  current_puzzleID = dayofyear()
+  current_level = current_year();
+  current_puzzleID = current_dayofyear()
   homepuzzle(nextActive=false)
   $('#infodate').html("<p>Daily puzzle of " +  current_date() + "</p>");
 }

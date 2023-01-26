@@ -561,3 +561,50 @@ a.popup-levelpuzzle {
   margin-right: auto;
   width: 100px;
 }
+
+
+
+
+
+.container {
+  margin: auto;
+  padding: 10px;
+}
+
+.accordion {
+  background-color: #eee;
+  color: #444;
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  text-align: left;
+  border: none;
+  outline: none;
+  transition: 0.4s;
+}
+
+.active,
+.accordion:hover {
+  background-color: #ccc;
+}
+
+.panel {
+  padding: 0 18px;
+  background-color: white;
+  display: none;
+  overflow: hidden;
+}
+
+.accordion:after {
+  /* Unicode character for "plus" sign (+) */
+  content: "\02795";
+  font-size: 13px;
+  color: #777;
+  float: right;
+  margin-left: 5px;
+}
+
+.active:after {
+  /* Unicode character for "minus" sign (-) */
+  content: "\2796";
+}

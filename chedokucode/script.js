@@ -95,7 +95,7 @@ function checkSolution() {
     if (foundStrictSolution) {
       msg = `Congratulations! You found the perfect solution in ${current_puzzle_moves} moves and ${durStr}. Do you want to share it with your friends? `
       msgtype = "success"
-      if (current_level == 365) {
+      if (current_level > 2020 &&  current_level < 2050) {
         socialmedia_text = `I found the perfect solution for today's (${date}) Chedoku puzzle in ${current_puzzle_moves} moves and ${durStr}.  #chedoku #puzzle #chess Challenge yourself with today's puzzle here: `
         socialmedia_url = `https://www.chedoku.com/#dailypuzzle`
       } else {
@@ -105,7 +105,7 @@ function checkSolution() {
     } else {
       msg = `Congratulations! You found a valid solution in ${current_puzzle_moves} moves and ${durStr}. You can keep playing to find the perfect solution that has no additional threats on empty squares,   <a href="#Foo" onclick="rules(); return false;">Learn more about rules</a> .`
       msgtype = "warning"
-      if (current_level == 365) {
+      if (current_level > 2020 &&  current_level < 2050) {
         socialmedia_text = `I found a solution for today's (${date}) Chedoku puzzle in ${current_puzzle_moves} moves and ${durStr}.  #chedoku #puzzle #chess Challenge yourself with today's puzzle here: `
         socialmedia_url = `https://www.chedoku.com/#dailypuzzle`
       } else {
@@ -254,7 +254,7 @@ function registerSquareOnClickHandler() {
   }
 }
 
-function dayofyear() {
+function current_dayofyear() {
   var now = new Date();
   var start = new Date(now.getFullYear(), 0, 0);
   var diff = now - start;
@@ -263,6 +263,10 @@ function dayofyear() {
   return day
 }
 
+function current_year() {
+  var year = new Date().getFullYear();
+  return year
+}
 
 function reset() {
   // console.log("puzzlePieces", puzzlePieces)
@@ -330,7 +334,7 @@ function loadPuzzle(level, puzzleID) {
       window.location.hash = 'rules'
     } else if (current_level < 50) {
       updateHash(hashParams)
-    } else if (current_level == 365) {
+    } else if (current_level > 2020 &&  current_level < 2050) {
       window.location.hash = 'dailypuzzle'
     } else if (current_level == 999) {
       window.location.hash = 'tutorial'

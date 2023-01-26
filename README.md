@@ -130,6 +130,24 @@
     //125. Remove tools from public github.io: FIXED
 
 
+
+    // 118. Russ Williams  I was going through the tutorial problems (which are very easy
+    indeed!) and I saw an apparent bug at problem 30 when I first see
+    problem 30 (by clicking "Next" from problem 29): no target numbers are
+    displayed on any squares when the problem first appears. (See attached
+    PNG file.)
+    I reproduced it a second time. If I move the bishop, then the target
+    numbers appear as usual. I'm using Firefox.
+    It seems a bit random/mysterious, because a third time through, the
+    numbers displayed correctly as soon as I reached problem 30.
+
+    Also, the Next button itself sometimes seems unreliable, occasionally
+    leaving me at the same problem. Just now, I was at problem 30 (with
+    numbers correctly displayed), then I hit Next, and it showed me
+    problem 30 again, but with no numbers. Then I hit Next again, and it
+    returned to problem 1.
+    //124. Yes, that helps clear things up.  I would say that just by playing the puzzle, finding the perfect solution is not very intuitive.  I understand now what you mean, after having read your explanation.  Perhaps there's a way to advise the player why their solution is not perfect (highlight the cells that are attacked and shouldn't be while the banner is still open perhaps?) to make it more intuitive without having to go to the rule book.
+
     // 62. Make alerts less flashy : LOW PRIORITY
     // 82. Optimize and improve speed  : LOW PRIORITY
     // 86. Obfuscate javascript : LOW PRIORITY
@@ -158,27 +176,12 @@ https://codepen.io/saharmm/pen/XQQjwq  // 103.  PWA install
     //118. feature request: make the login useful by showing stats about solved puzzles, then add the login to the main popup message, and optionally create a message to remind users to log in to save their data LOW PRIORITY
     //109. You data is in cookie, if you want to save it your need to register. Long term feature LOW PRIORITY
     //117. Reset doesn't close the solution notification LOW PRIORITY
-
     //123. the level slider issue also occurs when coming from the daily puzzle, not just the tutorial
+    //124. Collect WHEN the user played a game
 
+    //124. UI for user to see what they have solved, average time, etc puzzleids, findUnsolvedPuzzle, load_user_data, update_user_data
+    //125. List of puzzles that are solved with the best time. Total time spent, and items with these info (date, level, puzzleid, time, num_moves, link to puzzle)  ---https://codepen.io/royketelaar/embed/avWxve?theme-id=light
 
-
-    // 118. Russ Williams  I was going through the tutorial problems (which are very easy
-    indeed!) and I saw an apparent bug at problem 30 when I first see
-    problem 30 (by clicking "Next" from problem 29): no target numbers are
-    displayed on any squares when the problem first appears. (See attached
-    PNG file.)
-    I reproduced it a second time. If I move the bishop, then the target
-    numbers appear as usual. I'm using Firefox.
-    It seems a bit random/mysterious, because a third time through, the
-    numbers displayed correctly as soon as I reached problem 30.
-
-    Also, the Next button itself sometimes seems unreliable, occasionally
-    leaving me at the same problem. Just now, I was at problem 30 (with
-    numbers correctly displayed), then I hit Next, and it showed me
-    problem 30 again, but with no numbers. Then I hit Next again, and it
-    returned to problem 1.
-    //124. Yes, that helps clear things up.  I would say that just by playing the puzzle, finding the perfect solution is not very intuitive.  I understand now what you mean, after having read your explanation.  Perhaps there's a way to advise the player why their solution is not perfect (highlight the cells that are attacked and shouldn't be while the banner is still open perhaps?) to make it more intuitive without having to go to the rule book.
 
 ```
 
