@@ -575,7 +575,7 @@ a.popup-levelpuzzle {
   background-color: #eee;
   color: #444;
   cursor: pointer;
-  padding: 18px;
+  padding: 5px;
   width: 100%;
   text-align: left;
   border: none;
@@ -589,7 +589,7 @@ a.popup-levelpuzzle {
 }
 
 .panel {
-  padding: 0 18px;
+  padding: 0 0px;
   background-color: white;
   display: none;
   overflow: hidden;

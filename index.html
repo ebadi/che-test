@@ -377,33 +377,8 @@
     </div>
 
 
-    <div style="display:none" class="mycenter" id="login-container">
+    <div style="display:none" class="mycenter" id="login">
 
-
-      <div class="container">
-
-        <div class="accordion-contianer">
-          <button class="accordion">Section 1</button>
-          <div class="panel">
-            <p>Lorem ipsum...</p>
-          </div>
-        </div>
-
-        <div class="accordion-contianer">
-          <button class="accordion">Section 2</button>
-          <div class="panel">
-            <p>Lorem ipsum...</p>
-          </div>
-        </div>
-
-        <div class="accordion-contianer">
-          <button class="accordion">Section 3</button>
-          <div class="panel">
-            <p>Lorem ipsum...</p>
-          </div>
-        </div>
-
-      </div>
 
 
       <div id="loading">Loading...</div>
@@ -464,6 +439,12 @@
           </div>
         </div>
       </div>
+
+
+      <div class="container" id="statistic" >
+
+      </div>
+
     </div>
 
 
@@ -564,6 +545,11 @@
         daily()
       });
 
+      $('a.popup-login').click(function () {
+        $('.popup-overlay').fadeOut();
+        login()
+      });
+
       $('a.popup-tutorial').click(function () {
         $('.popup-overlay').fadeOut();
         tutorial()
@@ -604,10 +590,13 @@
         rules()
       } else if (window.location.hash.includes('about')) {
         about()
-      }
-      else {
+      } else if (window.location.hash.includes('login')) {
+        login()
+      } else {
         levelPuzzle()
       }
+
+
     });
 
     $('#next').on('click', function () {
@@ -670,6 +659,12 @@
         }
       });
     });
+
+
+
+
+
+    
   </script>
 
 

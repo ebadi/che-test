@@ -115,8 +115,34 @@ function checkSolution() {
     }
 
     cuteToast(type = msgtype, message = msg, socialmedia_url = socialmedia_url, socialmedia_text = socialmedia_text)
-    // t: time, m: number of moves, l: level, gid: puzzleid
-    user_game_results.push({ "t": dur, "m": current_puzzle_moves, 'l': current_level, 'gid': current_puzzleID });
+    // t: time to completion, m: number of moves, l: level, gid: puzzleid, ts: Timestamp, st: solution type
+    newItem = { "t": parseInt(dur), "m": parseInt(current_puzzle_moves), 'l': parseInt(current_level), 'gid': parseInt(current_puzzleID), 'ts': Date.now(), 'st': foundStrictSolution }
+    db_result  = user_game_results.find(element => element.l ==current_level && element.gid == current_puzzleID);
+    resultIndex= user_game_results.findIndex(element => element.l ==current_level && element.gid == current_puzzleID);
+
+    try{
+      // Replace the current time/#moves with the best time/#moves/solution status.
+      // This is BUGGY since if play 3 times and
+      // in game 1, we have the best time but worse in all other criteria,
+      // in game 2, we have the best number of moves but worse in all other criteria,
+      // in game 3, we find the perfect solution but worse in all other criteria
+      // As a result of this process we have one database entry with the best numbers from these three games
+      // THE GOAL is to keep one entry for each game in the database and simplify the statistic generation
+      if (db_result.t < newItem.t ){
+        newItem.t = db_result.t
+      }
+      if (db_result.m < newItem.m ){
+        newItem.m = db_result.m
+      }
+      if (db_result.st ){
+        newItem.st = db_result.st
+      }
+      user_game_results[resultIndex] = newItem
+    }catch (error) {
+      // add the item
+      user_game_results.push(newItem)
+    }
+
     try {
       update_user_data();
     }
@@ -475,6 +501,7 @@ function findUnsolvedPuzzle() {
 
 
 function load_user_data() {
+  console.log("load_user_data")
   try {
     database.ref().child('game_played/' + firebase.auth().currentUser.uid).once('value').then(function (lead) {
       //console.log(lead.val().user_game_results);
@@ -497,4 +524,47 @@ function update_user_data() {
     console.log("JSON user_game_results", JSON.stringify(user_game_results))
     database_ref.child('game_played/' + user.uid).set(JSON.stringify(user_game_results))
   }
+}
+function open_url(level, gid){
+  console.log("loading puzzle", level, gid)
+  loadGame(level, gid)
+  homepuzzle()
+}
+
+function loadingStatistic(){
+  setTimeout(() => load_user_data(), 300)
+  setTimeout(() => statisticUI(), 600)
+}
+
+function statisticUI(){
+  console.log("statisticUI");
+  e = document.getElementById("statistic");
+  e.innerHTML =''
+  levels= [2028,2027, 2026, 2025, 2024, 2023, 2022, 2021, 2020, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]
+  for(puzzle_inx in levels){
+    level= levels[puzzle_inx]
+    if (user_game_results.find(element => element.l == level) !=undefined  ){
+      console.log("level exist", level);
+      filtered_items= user_game_results.filter(element => element.l == level)
+      filtered_items_len= filtered_items.length
+      filtered_items_avg_moves = (filtered_items.reduce( (accumulator, currentValue)  => accumulator + currentValue.m, 0 ) / filtered_items_len ).toFixed(2)
+      filtered_items_avg_time = (filtered_items.reduce( (accumulator, currentValue)  => accumulator + currentValue.t, 0 ) /  filtered_items_len ).toFixed(2)
+      e.innerHTML += `<div class="accordion-container"> <button class="accordion"><b>Level ${level}</b> <br>(Played:${filtered_items_len} | Avg Time:${filtered_items_avg_time} seconds | Avg Moves:${filtered_items_avg_moves} )</button> <div class="panel" id="level${level}"></div> </div>`;
+      for(game_inx in filtered_items){
+        game_info = filtered_items[game_inx]
+        el = document.getElementById(`level${level}`);
+        var date = new Date(game_info.ts);
+        date_format= date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate()
+        el.innerHTML += `<p>  ${date_format} <a onclick="javascript:open_url(${level}, ${game_info.gid})" href="/#gid=${game_info.gid}&amp;d=${level}&amp;">Puzzle ID ${game_info.gid} </a>, Time:${game_info.t}, Moves:${game_info.m} </p>`
+      }
+    }
+  }
+
+
+  console.log("statisticUI > user_game_results:", user_game_results)
+
+  $(".accordion").on("click", function() {
+    $(this).toggleClass("active");
+    $(this).next().slideToggle(200);
+  });
 }

@@ -128,8 +128,9 @@
     //124. but wrong message... not a perfect solution it's a yellow notification, so should not have that anyways ... : FIXED
     //124. Google analytics privacy  warning GDPR on popup: FIXED
     //125. Remove tools from public github.io: FIXED
-
-
+    //126. Find the callback fir firebase authentication : FIXED
+    //129. Add solution type and time stamp to DB : FIXED
+    //128. Make #login to work # FIXED
 
     // 118. Russ Williams  I was going through the tutorial problems (which are very easy
     indeed!) and I saw an apparent bug at problem 30 when I first see
@@ -180,9 +181,15 @@ https://codepen.io/saharmm/pen/XQQjwq  // 103.  PWA install
     //124. Collect WHEN the user played a game
 
     //124. UI for user to see what they have solved, average time, etc puzzleids, findUnsolvedPuzzle, load_user_data, update_user_data
-    //125. List of puzzles that are solved with the best time. Total time spent, and items with these info (date, level, puzzleid, time, num_moves, link to puzzle)  ---https://codepen.io/royketelaar/embed/avWxve?theme-id=light
+    //125. List of puzzles that are solved with the best time. Total time spent, and items with these info (date, level, puzzleid, time, num_moves, link to puzzle)  https://codepen.io/imoaazahmed/pen/QmBovY
 
+    //127. Move Blogpost to chedoku.com 
+    //128. Answer to Dirk - Add the link to the website about 
+    //131. Answer to Stewart
+    //130. https://chesscircuit.substack.com/p/looking-forward-to-chess-in-2023
 
+    //129. Check if you play, then login it will not overwrite your data
+    //132. Inner links to puzzles don't work (e.g. game history & rules)
 ```
 
 

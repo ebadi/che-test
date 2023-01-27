@@ -24,18 +24,14 @@ function getUiConfig() {
     'callbacks': {
       // Called when the user has been successfully signed in.
       'signInSuccessWithAuthResult': function(authResult, redirectUrl) {
-        if (authResult.user) {
-          handleSignedInUser(authResult.user);
+        loadingStatistic();
+        return true;
+      },
+        'uiShown': function () {
+          console.log("FirebaseUIShown");
+          loadingStatistic();
         }
-        if (authResult.additionalUserInfo) {
-          document.getElementById('is-new-user').textContent =
-              authResult.additionalUserInfo.isNewUser ?
-              'New User' : 'Existing User';
-        }
-        // Do not redirect.
-        return false;
-      }
-    },
+      },
     // Opens IDP Providers sign-in flow in a popup.
     'signInFlow': 'popup',
     'signInOptions': [
@@ -54,9 +50,9 @@ function getUiConfig() {
           'user_friends'
         ]
       },
-      
+
       firebase.auth.TwitterAuthProvider.PROVIDER_ID,
-      
+
       /*
       firebase.auth.GithubAuthProvider.PROVIDER_ID,
       */
@@ -91,9 +87,9 @@ function getUiConfig() {
       */
     ],
     // Terms of service url.
-    'tosUrl': 'https://www.google.com',
+    'tosUrl': '/privacy',
     // Privacy policy url.
-    'privacyPolicyUrl': 'https://www.google.com',
+    'privacyPolicyUrl': '/privacy',
     'credentialHelper': CLIENT_ID && CLIENT_ID != 'YOUR_OAUTH_CLIENT_ID' ?
         firebaseui.auth.CredentialHelper.GOOGLE_YOLO :
         firebaseui.auth.CredentialHelper.NONE,

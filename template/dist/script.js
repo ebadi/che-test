@@ -152,8 +152,8 @@ function load_tutorials(){
 function disable_all_components(){
   document.getElementById("board").style.display = "none";
   document.getElementById("puzzleLevelSelector").style.display = "none";
-  document.getElementById("login-container").style.display = "none";
-  document.getElementById("boardcontrol").style.display = "none";    
+  document.getElementById("login").style.display = "none";
+  document.getElementById("boardcontrol").style.display = "none";
   document.getElementById("about").style.display = "none";
   document.getElementById("mailist").style.display = "none";
   document.getElementById("footer").style.display = "none";
@@ -188,6 +188,7 @@ function daily(){
   current_puzzleID = current_dayofyear()
   homepuzzle(nextActive=false)
   $('#infodate').html("<p>Daily puzzle of " +  current_date() + "</p>");
+  window.location.hash = 'dailypuzzle'
 }
 
 function tutorial(){
@@ -196,6 +197,13 @@ function tutorial(){
   document.getElementById("puzzleLevelSelector").style.display = "block";
   document.getElementById("boardcontrol").style.display = "block";
   load_tutorials();
+  window.location.hash = 'tutorial'
+}
+function login(){
+  disable_all_components();
+  document.getElementById("login").style.display = "block";
+  window.location.hash = 'login'
+  loadingStatistic()
 }
 
 function rules(){
@@ -255,31 +263,24 @@ function subscription(){
   }
   // ABOUT
   document.getElementById('item-info').onclick = function(e){
-    disable_all_components();
-    document.getElementById("about").style.display = "block";     
+    about()
   }
   document.getElementById('item-info-side').onclick = function(e){
-    disable_all_components();
-    document.getElementById("about").style.display = "block";      
+    about()
   }
   // RULES
   document.getElementById('item-rules').onclick = function(e){
-    disable_all_components();
-    document.getElementById("rules").style.display = "block";     
+    rules()
   }
   document.getElementById('item-rules-side').onclick = function(e){
-    disable_all_components();
-    document.getElementById("rules").style.display = "block";      
+    rules()
   }
   // LOGIN
   document.getElementById('item-login').onclick = function(e){
-    disable_all_components();
-    document.getElementById("login-container").style.display = "block";
-
+    login()
   }
   document.getElementById('item-login-side').onclick = function(e){
-    disable_all_components();
-    document.getElementById("login-container").style.display = "block";   
+    login()
   }
 
   // TUTORIAL IS BASICALLY HOME
