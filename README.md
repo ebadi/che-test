@@ -131,7 +131,8 @@
     //126. Find the callback fir firebase authentication : FIXED
     //129. Add solution type and time stamp to DB : FIXED
     //128. Make #login to work # FIXED
-
+    //132. Inner links to puzzles don't work (e.g. game history & rules) : FIXED
+    
     // 118. Russ Williams  I was going through the tutorial problems (which are very easy
     indeed!) and I saw an apparent bug at problem 30 when I first see
     problem 30 (by clicking "Next" from problem 29): no target numbers are
@@ -189,7 +190,7 @@ https://codepen.io/saharmm/pen/XQQjwq  // 103.  PWA install
     //130. https://chesscircuit.substack.com/p/looking-forward-to-chess-in-2023
 
     //129. Check if you play, then login it will not overwrite your data
-    //132. Inner links to puzzles don't work (e.g. game history & rules)
+
 ```
 
 
