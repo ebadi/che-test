@@ -155,7 +155,9 @@ function checkSolution() {
 
 async function copyContent() {
   try {
-    await navigator.clipboard.writeText(document.querySelector('#cliboardinput').text);
+    msg= document.querySelector('#cliboardinput').text
+    await navigator.clipboard.writeText(msg);
+    cuteToast(type = 'success', message = `<b>The following message is copied to the clipboard</b>:<br> "${msg}"`)
   } catch (err) {
     console.error('Failed to copy: ', err);
   }
