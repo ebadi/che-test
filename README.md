@@ -138,6 +138,12 @@
     //133. Fix internal link to puzzle in about/rule section : FIXED
     //129. Check if you play, then login it will not overwrite your data : WORKS FINE
     //130. https://chesscircuit.substack.com/p/looking-forward-to-chess-in-2023 : FIXED
+    //128. Answer to Dirk - Add the link to the website about  : FIXED 
+    //131. Answer to Stewart : FIXED 
+    //132. Cleanup console.log : FIXED
+
+
+
 
     // 118. Russ Williams  I was going through the tutorial problems (which are very easy
     indeed!) and I saw an apparent bug at problem 30 when I first see
@@ -185,14 +191,12 @@ https://codepen.io/saharmm/pen/XQQjwq  // 103.  PWA install
     //109. You data is in cookie, if you want to save it your need to register. Long term feature LOW PRIORITY
     //117. Reset doesn't close the solution notification LOW PRIORITY
     //123. the level slider issue also occurs when coming from the daily puzzle, not just the tutorial : TEST
+    //127. Move Blogpost to chedoku.com
+    //134. Userdata to Cookie
+    //135. null as game id in game history
+    //136. Level 2 last puzzles are already solved
+    //137. Level 1 puzzle solved but disappeared 
 
-
-    //127. Move Blogpost to chedoku.com 
-    //128. Answer to Dirk - Add the link to the website about 
-    //131. Answer to Stewart
-
-    //132. Cleanup console.log
-    //134. Userdata to Cookie!?
 
 ```
 

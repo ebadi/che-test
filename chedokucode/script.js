@@ -358,6 +358,10 @@ function loadPuzzle(level, puzzleID) {
       window.location.hash = 'about'
     } else if (window.location.hash == 'rules') {
       window.location.hash = 'rules'
+    } else if (window.location.hash == 'login') {
+      window.location.hash = 'login'
+    } else if (window.location.hash == 'dailypuzzle') {
+      window.location.hash = 'dailypuzzle'
     } else if (current_level < 50) {
       updateHash(hashParams)
     } else if (current_level > 2020 &&  current_level < 2050) {
@@ -521,7 +525,7 @@ function update_user_data() {
   var database_ref = database.ref()
   user = firebase.auth().currentUser
   if (Object.keys(user_game_results).length > 0) {
-    console.log("JSON user_game_results", JSON.stringify(user_game_results))
+    //console.log("JSON user_game_results", JSON.stringify(user_game_results))
     database_ref.child('game_played/' + user.uid).set(JSON.stringify(user_game_results))
   }
 }
@@ -543,7 +547,7 @@ function secondToStr(input_second){
   
 }
 function statisticUI(){
-  console.log("statisticUI");
+  //console.log("statisticUI");
   e = document.getElementById("statistic");
   e.innerHTML =''
   levels= [2028,2027, 2026, 2025, 2024, 2023, 2022, 2021, 2020, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]
@@ -580,7 +584,7 @@ function statisticUI(){
   }
 
 
-  console.log("statisticUI > user_game_results:", user_game_results)
+  //console.log("statisticUI > user_game_results:", user_game_results)
 
   $(".accordion").on("click", function() {
     $(this).toggleClass("active");
