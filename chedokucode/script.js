@@ -550,22 +550,25 @@ function statisticUI(){
       filtered_items_avg_moves = (filtered_items.reduce( (accumulator, currentValue)  => accumulator + currentValue.m, 0 ) / filtered_items_len ).toFixed(2)
       filtered_items_avg_time = (filtered_items.reduce( (accumulator, currentValue)  => accumulator + currentValue.t, 0 ) /  filtered_items_len ).toFixed(2)
       if (level  < 2100 && level > 2000){
-        level_format = "Year "
+        level_format = "🗓️ Year "
       } else{
-        level_format = "Difficulty Level "
+        level_format = "🌡️ Difficulty Level "
       }
-      e.innerHTML += `<div class="accordion-container"> <button class="accordion"><b>${level_format} ${level}</b> <br>(Played:${filtered_items_len} | Avg Time:${filtered_items_avg_time} seconds | Avg Moves:${filtered_items_avg_moves} )</button> <div class="panel" id="level${level}"></div> </div>`;
+      e.innerHTML += `<div class="accordion-container"> <button class="accordion"><b>${level_format} ${level}</b> <br>Played:${filtered_items_len} | Avg Time:${filtered_items_avg_time} seconds | Avg Moves:${filtered_items_avg_moves} </button> <div class="panel" id="level${level}"></div> </div>`;
       for(game_inx in filtered_items){
         game_info = filtered_items[game_inx]
         el = document.getElementById(`level${level}`);
         var date = new Date(game_info.ts);
-        date_format= date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate()
+        date_format= date.getFullYear() + "-" + ("0" + (date.getMonth() + 1)).slice(-2) + "-" + ("0" + date.getDate()).slice(-2)
+        var minutes = ("0" +Math.floor(game_info.t / 60)).slice(-2) ;
+        var seconds = ("0" + (game_info.t - minutes * 60)).slice(-2);
+        human_time = minutes + ":" + seconds ;
         if (game_info.st){
           perfect_format = "✅"
         }else{
           perfect_format = "☑️"
         }
-        el.innerHTML += `<p>  ${date_format} <a onclick="javascript:open_url(${level}, ${game_info.gid})" href="/#gid=${game_info.gid}&amp;d=${level}&amp;">Puzzle ID ${game_info.gid}</a>, Time:${game_info.t}, Moves:${game_info.m}, ${perfect_format}</p>`
+        el.innerHTML += `<p>${date_format} <a onclick="javascript:open_url(${level}, ${game_info.gid})" href="/#gid=${game_info.gid}&amp;d=${level}&amp;">Puzzle ID ${game_info.gid}</a> &nbsp; Time: ${human_time} &nbsp; Moves:${game_info.m}  ${perfect_format}</p>`
       }
     }
   }

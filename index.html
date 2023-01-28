@@ -96,12 +96,12 @@
   </div>
   <div role='main'>
 
-    <div style="display:none" class="mycenter" id="rules">
+    <div style="display:none" class="mycenter-text" id="rules">
 
       <img src="static/logox-350.png" alt="Chedoku, playing soduko on a chess board" style="max-width:300px" loading="lazy">
       <!-- https://itinerarium.github.io/phoneme-synthesis/?w=/ʧuˈdəʊkuː/ -->
       <p>
-      <h2>Chedoku Puzzle Rule: </h2>
+      <h2>📜 Chedoku Puzzle Rule: </h2>
       To solve a <a href="https://chedoku.com">Chedoku puzzle</a>
       re-arrange the chess pieces to find a solution where the number of pieces threatening each square matches the
       large number in that square.
@@ -202,7 +202,8 @@
       For example, in the puzzle below placing pawn on c2 is an imperfect solution but placing it on a2 is a perfect
       solution.
 
-      <a href="https://chedoku.com/#gid=3&d=1&">https://chedoku.com/#gid=3&d=1&</a>
+      <a onclick="javascript:open_url(1, 3)" href="/#gid=3&amp;d=1&amp;" >https://chedoku.com/#gid=3&d=1</a>
+
       In puzzles with black pieces, perfect solutions can be extra tricky to find, since the threats of white (+) and
       black (-) pieces can cancel each other out, creating squares that look like there is no threat but that actually
       require you to place two pieces threatening it to get to zero.
@@ -223,7 +224,7 @@
     </div>
 
 
-    <div style="display:none" class="mycenter" id="about">
+    <div style="display:none" class="mycenter-text" id="about">
 
       <h4>Contact</h4>
       <p>
@@ -243,16 +244,21 @@
       <h4>On News</h4>
       <span class="myspan">
         <div class="sliderXXXX">
-          <p>"Do you like Sudoku? Do you like chess? then you might like this - Chedoku! It's safer than Chess Boxing"
+
+          <p> 💬 "Do you like Sudoku? Do you like chess? then you might like this - Chedoku! It's safer than Chess Boxing"
             <br> - Adam Raoof, <a rel="noindex, nofollow" style="text-decoration: none"
-              href="https://chessengland.com/">The Chess England</a> , FIDE IA, IO and chess writer </p>
-          <p>"I like it! Fun way to improve your understanding of the pieces' abilities." <br> - <a
+              href="https://chesscircuit.substack.com/p/looking-forward-to-chess-in-2023">The Chess Circuit</a>, The Chess England, FIDE IA, IO and chess writer </p>
+          <p> 💬 "I like it! Fun way to improve your understanding of the pieces' abilities." <br> - <a
               rel="noindex, nofollow" style="text-decoration: none" href="https://www.natesolon.com/">Nathan Solon</a>,
             Chess master, Former poker pro, Data scientist </p>
-          <p><a href="https://www.indiedb.com/games/chedoku" title="View Chedoku on Indie DB" rel="nofollow noopener"
+          <p> 💬 "Wie sudoku's en schaakproblemen leuk vindt zal misschien in chedoku een leuke combinatie van beiden vinden." <br> - <a
+              rel="noindex, nofollow" style="text-decoration: none" href="http://www.probleemblad.nl/index.php/laatste-nieuws/1514-nieuw-soort-schaakpuzzels-de-chedoku">Nederlandse bond van schaakprobleemvrienden</a>,
+              Dutch association of chess problem friends</p>
+          <p>💬 <a href="https://www.indiedb.com/games/chedoku" title="View Chedoku on Indie DB" rel="nofollow noopener"
               target="_blank"><img src="https://button.indiedb.com/popularity/medium/games/80524.png" alt="Chedoku"
                 style="margin-left: auto; margin-right: auto; " /></a></p>
 
+                 
         </div>
       </span>
       <h4>Privacy Statement </h4>
@@ -299,7 +305,7 @@
     </div>
 
 
-    <div style="display:none" class="mycenter" id="mailist">
+    <div style="display:none" class="mycenter-text" id="mailist">
       <iframe src="maillist" title="maillist"
         style="position:fixed; top:0; left:0; bottom:0; right:0; width:100%; height:100%; border:none; margin:0; padding:0; overflow:hidden; "></iframe>
     </div>
@@ -377,7 +383,7 @@
     </div>
 
 
-    <div style="display:none" class="mycenter" id="login">
+    <div style="display:none" class="mycenter-text" id="login">
 
 
 
@@ -397,7 +403,7 @@
             </div>
             <p>
               <button id="sign-out">Sign Out</button>
-              <button id="delete-account">Delete account</button>
+             <!-- <button id="delete-account">Delete account</button> -->
             </p>
           </div>
           <div id="user-signed-out" class="hidden">

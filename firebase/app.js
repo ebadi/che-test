@@ -232,11 +232,12 @@ var initApp = function() {
   document.getElementById('sign-out').addEventListener('click', function() {
     firebase.auth().signOut();
   });
+  /*
   document.getElementById('delete-account').addEventListener(
       'click', function() {
         deleteAccount();
       });
-
+  */
   /*
   document.getElementById('recaptcha-normal').addEventListener(
       'change', handleConfigChange);

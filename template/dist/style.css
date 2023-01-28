@@ -23,6 +23,15 @@ body{
       justify-content: center;
       margin-left: 15px;
       margin-right: 15px;
+    }
+
+.mycenter-text{
+  width: 380px;
+  align-items: center;
+  justify-content: center;
+  margin-left: 15px;
+  margin-right: 15px;
+  margin-bottom: 15px;
 }
 
 header{
