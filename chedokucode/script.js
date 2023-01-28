@@ -536,6 +536,12 @@ function loadingStatistic(){
   setTimeout(() => statisticUI(), 600)
 }
 
+function secondToStr(input_second){
+  var minutes = ("0" +Math.floor(input_second/ 60)).slice(-2) ;
+  var seconds = ("0" + (input_second - minutes * 60)).slice(-2);
+  return minutes + ":" + seconds ;
+  
+}
 function statisticUI(){
   console.log("statisticUI");
   e = document.getElementById("statistic");
@@ -547,22 +553,22 @@ function statisticUI(){
       console.log("level exist", level);
       filtered_items= user_game_results.filter(element => element.l == level)
       filtered_items_len= filtered_items.length
-      filtered_items_avg_moves = (filtered_items.reduce( (accumulator, currentValue)  => accumulator + currentValue.m, 0 ) / filtered_items_len ).toFixed(2)
-      filtered_items_avg_time = (filtered_items.reduce( (accumulator, currentValue)  => accumulator + currentValue.t, 0 ) /  filtered_items_len ).toFixed(2)
+      filtered_items_avg_moves = (filtered_items.reduce( (accumulator, currentValue)  => accumulator + currentValue.m, 0 ) / filtered_items_len )
+      filtered_items_avg_time = (filtered_items.reduce( (accumulator, currentValue)  => accumulator + currentValue.t, 0 ) /  filtered_items_len )
       if (level  < 2100 && level > 2000){
         level_format = "🗓️ Year "
       } else{
         level_format = "🌡️ Difficulty Level "
       }
-      e.innerHTML += `<div class="accordion-container"> <button class="accordion"><b>${level_format} ${level}</b> <br>Played:${filtered_items_len} | Avg Time:${filtered_items_avg_time} seconds | Avg Moves:${filtered_items_avg_moves} </button> <div class="panel" id="level${level}"></div> </div>`;
+      filtered_items_avg_time = secondToStr(parseInt(filtered_items_avg_time))
+      filtered_items_avg_moves = parseInt(filtered_items_avg_moves)
+      e.innerHTML += `<div class="accordion-container"> <button class="accordion"><b>${level_format} ${level}</b> <br>Solved puzzles:${filtered_items_len} | Avg Time: ${filtered_items_avg_time} | Avg Moves:${filtered_items_avg_moves} </button> <div class="panel" id="level${level}"></div> </div>`;
       for(game_inx in filtered_items){
         game_info = filtered_items[game_inx]
         el = document.getElementById(`level${level}`);
         var date = new Date(game_info.ts);
         date_format= date.getFullYear() + "-" + ("0" + (date.getMonth() + 1)).slice(-2) + "-" + ("0" + date.getDate()).slice(-2)
-        var minutes = ("0" +Math.floor(game_info.t / 60)).slice(-2) ;
-        var seconds = ("0" + (game_info.t - minutes * 60)).slice(-2);
-        human_time = minutes + ":" + seconds ;
+        human_time = secondToStr(game_info.t)
         if (game_info.st){
           perfect_format = "✅"
         }else{
