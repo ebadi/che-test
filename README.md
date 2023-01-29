@@ -141,8 +141,8 @@
     //128. Answer to Dirk - Add the link to the website about  : FIXED 
     //131. Answer to Stewart : FIXED 
     //132. Cleanup console.log : FIXED
-
-
+    //139. Be clear on if we are logged in : FIXED 
+    //138. Solving last puzzle of the level, moves you to the next level : FIXED
 
 
     // 118. Russ Williams  I was going through the tutorial problems (which are very easy
@@ -191,13 +191,18 @@ https://codepen.io/saharmm/pen/XQQjwq  // 103.  PWA install
     //109. You data is in cookie, if you want to save it your need to register. Long term feature LOW PRIORITY
     //117. Reset doesn't close the solution notification LOW PRIORITY
     //123. the level slider issue also occurs when coming from the daily puzzle, not just the tutorial : TEST
-    //127. Move Blogpost to chedoku.com
+    //127. Move Blogpost to chedoku.com  : LOW PRIORITY
+
+
     //134. Userdata to Cookie
     //135. null as game id in game history
     //136. Level 2 last puzzles are already solved
     //137. Level 1 puzzle solved but disappeared 
 
 
+
+    //140. Double click on copy to clipboard causes The following message is copied to the clipboard: "NaN" 
+    //141  Show if a puzzle is solved  or not  instead of findUnsolvedPuzzle
 ```
 
 

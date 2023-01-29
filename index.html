@@ -341,7 +341,7 @@
       </div>
 
       <div id="puzzleselector">
-        <span id="infotext2" style="margin-right:5px"> </span>
+        <span id="infotext2" style="margin-right:5px"></span>
         <button type="submit" id="next" class="stylish">
           <i class='material-icons'>arrow_forward_ios_outlined</i> Next
         </button>
@@ -352,7 +352,8 @@
 
 
     <div class="mycenter" id="boardcontrol">
-      <span id="infodate" style="margin-right:5px; font-weight: bold;"> </span>
+      <span id="infodate"  style="margin-right:5px; font-weight: bold;"></span>
+      <span id="infotext3" style="margin-right:5px; font-weight: bold;"></span><br>
       <button type="submit" id="solution" class="stylish">
         <i class='material-icons'>emoji_objects_outlined</i> Solution <br>
       </button>
@@ -410,7 +411,7 @@
             </p>
           </div>
           <div id="user-signed-out" class="hidden">
-            <h4>You are signed out.</h4>
+            <h4> You are <b>not</b> logged in.</h4>
             By registering, you can access a variety of puzzles without repetition, and stay up-to-date on any recent changes.
             <fieldset style="display:none">
               <legend>Configuration</legend>
@@ -497,6 +498,7 @@
     var squareDestination = null
     var current_draggable = false
     var current_showhint = true
+    var user_data_from_server = false
 
     function isTouchDevice() {
       return (('ontouchstart' in window) ||
@@ -605,14 +607,13 @@
         levelPuzzle()
       }
 
-
+    setTimeout(() => load_user_data(), 1000)
     });
 
     $('#next').on('click', function () {
       cuteToast(type = "reset", message = '')
-      loadGame('undefined', 'undefined')
+      loadGame(current_level, current_puzzleID +1)
     })
-
     document.addEventListener('keydown', (e) => {
       if (e.key.toLowerCase() === 'y' && e.altKey) {
         // Add your code here

@@ -144,7 +144,8 @@ function checkSolution() {
     }
 
     try {
-      update_user_data();
+      loadingStatistic();
+      load_user_data();
     }
     catch (e) {
       console.log("User is not logged in to save played games")
@@ -441,9 +442,10 @@ function colorDiff(num) {
 
 
 function loadGame(level, puzzleID) {
-  if (puzzleID == 'undefined') {
-    current_level, current_puzzleID = findUnsolvedPuzzle()
-  } else {
+  if (puzzleID > 30){
+    current_level = level + 1;
+    current_puzzleID = 1 ;
+  } else{
     current_level = level;
     current_puzzleID = puzzleID;
   }
@@ -491,20 +493,6 @@ function puzzleids(lvl) {
 }
 
 
-function findUnsolvedPuzzle() {
-  allPuzzleKeys = Object.keys(allPuzzles)
-  playedPuzzleKeys = puzzleids(current_level)
-  notPlayedKeys = allPuzzleKeys.filter(x => !playedPuzzleKeys.includes(x));
-  //console.log(">>>> allPuzzleKeys:", allPuzzleKeys, "playedPuzzleKeys:", playedPuzzleKeys, "Random puzzle:", notPlayedKeys[index])
-  current_puzzleID = notPlayedKeys[index]
-  index = index + 1
-  if (notPlayedKeys.length < 1) {
-    current_level++
-    current_puzzleID = 1
-  }
-  return (current_level, current_puzzleID)
-}
-
 
 function load_user_data() {
   console.log("load_user_data")
@@ -512,12 +500,15 @@ function load_user_data() {
     database.ref().child('game_played/' + firebase.auth().currentUser.uid).once('value').then(function (lead) {
       //console.log(lead.val().user_game_results);
       user_game_results = JSON.parse(lead.val());
+      user_data_from_server = true
       console.log("user_game_results:", user_game_results)
     });
   } catch (error) {
-    user_game_results = []
+    user_data_from_server = false
   }
-  setTimeout(() => loadGame(current_level, current_puzzleID), 200)
+
+  //setTimeout(() => loadGame(current_level, current_puzzleID), 200)
+  setTimeout(() => account_ui(), 300)
 }
 
 function update_user_data() {
@@ -546,7 +537,6 @@ function secondToStr(input_second){
   var minutes = ("0" +Math.floor(input_second/ 60)).slice(-2) ;
   var seconds = ("0" + (input_second - minutes * 60)).slice(-2);
   return minutes + ":" + seconds ;
-  
 }
 function statisticUI(){
   //console.log("statisticUI");
@@ -556,7 +546,6 @@ function statisticUI(){
   for(puzzle_inx in levels){
     level= levels[puzzle_inx]
     if (user_game_results.find(element => element.l == level) !=undefined  ){
-      console.log("level exist", level);
       filtered_items= user_game_results.filter(element => element.l == level)
       filtered_items_len= filtered_items.length
       filtered_items_avg_moves = (filtered_items.reduce( (accumulator, currentValue)  => accumulator + currentValue.m, 0 ) / filtered_items_len )

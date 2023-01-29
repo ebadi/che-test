@@ -29,7 +29,6 @@ function driverjs_1(){
     // current_puzzleID = default_puzzleID
     // loadAllPuzzles(current_level)
     // console.log("change current_level", current_level ) ;  
-    // user_game_results = []
     // $("#slider-range-min").slider({value : current_level} ) 
     // loadGame(current_level, current_puzzleID)
     // console.log("CLOSING")
@@ -143,7 +142,6 @@ function load_tutorials(){
   allPuzzles = [1,2,3,4]
   current_level = 999
   console.log("change current_level", current_level ) ;  
-  user_game_results = []
   loadGame(current_level, 1)
 // Start the introduction
   setTimeout(() =>   driverjs_1()  , 500) ;
@@ -183,11 +181,23 @@ function homepuzzle(nextActive= true){
   boardChangedUpdateGame();
 }
 
+function account_ui(){
+  if(user_data_from_server){
+    loggin_text = 'Logged in.'
+  }else{
+    loggin_text = 'You are <b>not</b> logged in.'
+    $('#statistic').html("");
+  }
+  $('#infotext3').html(loggin_text);
+}
+
 function daily(){
   current_level = current_year();
   current_puzzleID = current_dayofyear()
   homepuzzle(nextActive=false)
-  $('#infodate').html("<p>Daily puzzle of " +  current_date() + "</p>");
+
+
+  $('#infodate').html("<p>Daily puzzle of " +  current_date() + "</p>" );
   window.location.hash = 'dailypuzzle'
 }
 

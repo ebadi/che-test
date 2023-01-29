@@ -167,6 +167,9 @@ var handleSignedOutUser = function() {
   document.getElementById('user-signed-in').style.display = 'none';
   document.getElementById('user-signed-out').style.display = 'block';
   ui.start('#firebaseui-container', getUiConfig());
+  // CHEDOKU code
+  account_ui()
+  user_game_results = []
 };
 
 // Listen to change in auth state so it displays the correct UI for when
