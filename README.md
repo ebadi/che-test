@@ -143,10 +143,8 @@
     //132. Cleanup console.log : FIXED
     //139. Be clear on if we are logged in : FIXED 
     //138. Solving last puzzle of the level, moves you to the next level : FIXED
-    // 140. When page for the first time loades, the hisroty does not load
-    // 141. Move info about solved puzzle to login message
-    // 142. slider does not reset together with level on home page
-    // checksolution doesnot register solved puzzles
+    //145. Direct link to puzzle doesn't work : FIXED
+
 
     // 118. Russ Williams  I was going through the tutorial problems (which are very easy
     indeed!) and I saw an apparent bug at problem 30 when I first see
@@ -206,6 +204,11 @@ https://codepen.io/saharmm/pen/XQQjwq  // 103.  PWA install
 
     //140. Double click on copy to clipboard causes The following message is copied to the clipboard: "NaN" 
     //141  Show if a puzzle is solved  or not  instead of findUnsolvedPuzzle
+    //146. When page for the first time loaded, the history does not load
+    //147. Move info about solved puzzle to login message
+    //148. slider does not reset together with level on home page
+    // checksolution does not register solved puzzles
+    //150. Schema.org Structured Data
 ```
 
 
