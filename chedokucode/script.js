@@ -146,7 +146,7 @@ function checkSolution() {
 
     try {
       update_user_data();
-      loadingStatistic();
+      //loadingStatistic();
       load_user_data();
     }
     catch (e) {
@@ -523,7 +523,7 @@ function load_user_data() {
     user_data_from_server = false
   }
 
-  setTimeout(() => loadGame(current_level, current_puzzleID), 200)
+  //setTimeout(() => loadGame(current_level, current_puzzleID), 200)
   setTimeout(() => account_ui(), 300)
 }
 
