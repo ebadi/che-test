@@ -44,14 +44,6 @@ function cuteToast(type, message, socialmedia_url, socialmedia_text) {
   }
 }
 
-function levelPuzzle() {
-  loadAllPuzzles(current_level)
-  setTimeout(() => load_user_data(), 300)
-  setTimeout(() => {
-    reset();
-    boardChangedUpdateGame();
-  }, 1000)
-}
 
 function boardChangedUpdateGame() {
   //console.log("boardChangedUpdateGame");
@@ -147,7 +139,7 @@ function checkSolution() {
     try {
       update_user_data();
       //loadingStatistic();
-      load_user_data();
+      //load_user_data();
     }
     catch (e) {
       console.log("User is not logged in to save played games")
