@@ -611,7 +611,7 @@
 
     $('#next').on('click', function () {
       cuteToast(type = "reset", message = '')
-      loadGame(current_level, current_puzzleID +1)
+      loadGame(parseInt(current_level), parseInt(current_puzzleID) +1)
     })
     document.addEventListener('keydown', (e) => {
       if (e.key.toLowerCase() === 'y' && e.altKey) {
