@@ -140,10 +140,12 @@ function checkSolution() {
       user_game_results[resultIndex] = newItem
     }catch (error) {
       // add the item
+      console.log(error)
       user_game_results.push(newItem)
     }
 
     try {
+      update_user_data();
       loadingStatistic();
       load_user_data();
     }
@@ -390,8 +392,6 @@ function loadPuzzle(level, puzzleID) {
 
   }).fail(function () {
     console.log("ERROR loading puzzle")
-    current_puzzleID = current_puzzleID
-    index = 0
   });
 
 }

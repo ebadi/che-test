@@ -143,7 +143,10 @@
     //132. Cleanup console.log : FIXED
     //139. Be clear on if we are logged in : FIXED 
     //138. Solving last puzzle of the level, moves you to the next level : FIXED
-
+    // 140. When page for the first time loades, the hisroty does not load
+    // 141. Move info about solved puzzle to login message
+    // 142. slider does not reset together with level on home page
+    // checksolution doesnot register solved puzzles
 
     // 118. Russ Williams  I was going through the tutorial problems (which are very easy
     indeed!) and I saw an apparent bug at problem 30 when I first see
