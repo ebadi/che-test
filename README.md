@@ -148,8 +148,8 @@
     //151. checksolution does not register solved puzzles : FIXED
     //141  Show if a puzzle is solved  or not  instead of findUnsolvedPuzzle : FIXED
     // 152. Fix statistic page, year 2024 : FIXED
-
-
+    //148. slider does not reset together with level on home page - change level by adjusting slider, click on home again> the level jumps back to 3, but the slider stays in the previous position : FIXED
+    // 153. Lazy evaluation for frame : FIXED
 
     // 118. Russ Williams  I was going through the tutorial problems (which are very easy
     indeed!) and I saw an apparent bug at problem 30 when I first see
@@ -210,8 +210,7 @@ https://codepen.io/saharmm/pen/XQQjwq  // 103.  PWA install
 
     //146. When page for the first time loaded, the history does not load
     //147. Move info about solved puzzle to login message
-    //148. slider does not reset together with level on home page - change level by adjusting slider, click on home again> the level jumps back to 3, but the slider stays in the previous position
-    // 153. Lazy evaluation for frame
+
 
     
 ```

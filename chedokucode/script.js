@@ -1,3 +1,23 @@
+
+function adjustSlider(){
+  $(function () {
+    $("#slider-range-min").slider({
+      range: "min",
+      value: current_level,
+      min: 1,
+      max: 20,
+      slide: function (event, ui) {
+        $("#level").val(ui.value);
+        current_level = ui.value
+        current_puzzleID = default_puzzleID
+        loadAllPuzzles(current_level)
+        cuteToast(type = "reset", message = '')
+        loadGame(current_level, current_puzzleID)
+      }
+    });
+  });
+}
+
 function annotateSquare(sq, num, color = 'red') {
   squareObj = document.getElementsByClassName("square-" + sq);
   // console.log(">>>",  sq, square2index(sq), values [square2index(sq)] ,  num )
@@ -343,22 +363,10 @@ function loadPuzzle(level, puzzleID) {
     boardChangedUpdateGame();
     //boardChangedUpdateGame();
 
-    prev_puzzle_info = ''
-    for (i in user_game_results){
-      game_info = user_game_results[i]
-      if (game_info.l == level && game_info.gid == puzzleID ){
-        human_time = secondToStr(game_info.t)
-        if (game_info.st){
-          perfect_format = "✅"
-        }else{
-          perfect_format = "☑️"
-        }
-        prev_puzzle_info = `&nbsp; Time: ${human_time} &nbsp; Moves:${game_info.m}  ${perfect_format}`
-      }
-    }
+    account_ui()
 
     $('#infotext1').html('Challenge yourself by adjusting the difficulty level: <b> ' + current_level + '</b>');
-    $('#infotext2').html('Puzzle ID: <b> ' + puzzleID + '</b>' + prev_puzzle_info);
+    $('#infotext2').html('Puzzle ID: <b> ' + puzzleID + '</b>');
     document.getElementById("offboard_item").checked = (dropOffBoard == 'trash');
     document.getElementById("strictmode_item").checked = strictSolution;
 
@@ -449,7 +457,7 @@ function colorDiff(num) {
 
 
 function loadGame(level, puzzleID) {
-
+  adjustSlider()
   if (level < 2000 & puzzleID > 30){
     current_level = level + 1;
     current_puzzleID = 1 ;
@@ -771,18 +779,35 @@ function homepuzzle(nextActive = true) {
   }
   $('#infodate').text("");
   loadGame(current_level, current_puzzleID)
+
   reset();
   boardChangedUpdateGame();
 }
 
 function account_ui() {
+  prev_puzzle_info = ''
   if (user_data_from_server) {
-    loggin_text = 'Logged in.'
+    loggin_text = 'You are logged in.'
+    for (i in user_game_results){
+      game_info = user_game_results[i]
+      if (game_info.l == current_level && game_info.gid == current_puzzleID ){
+        human_time = secondToStr(game_info.t)
+        if (game_info.st){
+          perfect_format = "✅"
+        }else{
+          perfect_format = "☑️"
+        }
+        prev_puzzle_info = `&nbsp; Record (Time: ${human_time} &nbsp; Moves:${game_info.m}  ${perfect_format})`
+      }
+    }
   } else {
     loggin_text = 'You are <b>not</b> logged in.'
     $('#statistic').html("");
   }
-  $('#infotext3').html(loggin_text);
+
+
+
+  $('#infotext3').html(loggin_text + prev_puzzle_info);
 }
 
 function daily() {
