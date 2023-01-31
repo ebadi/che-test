@@ -449,7 +449,8 @@ function colorDiff(num) {
 
 
 function loadGame(level, puzzleID) {
-  if (puzzleID > 30){
+
+  if (level < 2000 & puzzleID > 30){
     current_level = level + 1;
     current_puzzleID = 1 ;
   } else{

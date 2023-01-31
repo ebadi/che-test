@@ -147,7 +147,7 @@
     //150. Schema.org Structured Data : FIXED
     //151. checksolution does not register solved puzzles : FIXED
     //141  Show if a puzzle is solved  or not  instead of findUnsolvedPuzzle : FIXED
-
+    // 152. Fix statistic page, year 2024 : FIXED
 
 
 
@@ -206,12 +206,12 @@ https://codepen.io/saharmm/pen/XQQjwq  // 103.  PWA install
     //137. Level 1 puzzle solved but disappeared 
 
 
-
     //140. Double click on copy to clipboard causes The following message is copied to the clipboard: "NaN" 
 
     //146. When page for the first time loaded, the history does not load
     //147. Move info about solved puzzle to login message
-    //148. slider does not reset together with level on home page
+    //148. slider does not reset together with level on home page - change level by adjusting slider, click on home again> the level jumps back to 3, but the slider stays in the previous position
+    // 153. Lazy evaluation for frame
 
     
 ```
