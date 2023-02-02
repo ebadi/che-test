@@ -129,9 +129,9 @@ function checkSolution() {
     cuteToast(type = msgtype, message = msg, socialmedia_url = socialmedia_url, socialmedia_text = socialmedia_text)
     // t: time to completion, m: number of moves, l: level, gid: puzzleid, ts: Timestamp, st: solution type
     newItem = { "t": parseInt(dur), "m": parseInt(current_puzzle_moves), 'l': parseInt(current_level), 'gid': parseInt(current_puzzleID), 'ts': Date.now(), 'st': foundStrictSolution }
-    db_result  = user_game_results.find(element => element.l ==current_level && element.gid == current_puzzleID);
     resultIndex= user_game_results.findIndex(element => element.l ==current_level && element.gid == current_puzzleID);
-    if (db_result != undefined){
+    db_result = user_game_results[resultIndex]
+    if (resultIndex  != -1  ){
       user_game_results[resultIndex] = best_result(db_result, newItem)
       sync_user_game_results()
     }else {
