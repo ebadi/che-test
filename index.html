@@ -528,8 +528,13 @@
     var current_puzzle_moves = 0
     var allPuzzles
     var hashParams = []
-    var user_game_results = {}
-    user_game_results[current_level] = {}
+    var user_game_results  = []
+    user_game_results = JSON.parse (window.localStorage.getItem('user_game_results'))
+    console.log("XXXXXXXXXXXXXXx", )
+    if (user_game_results == null){
+      user_game_results  = []
+    }
+
     var boardtag = $('#board')
     var game = new Chess()
     var squareClass = 'square-55d63'

@@ -150,6 +150,10 @@
     // 152. Fix statistic page, year 2024 : FIXED
     //148. slider does not reset together with level on home page - change level by adjusting slider, click on home again> the level jumps back to 3, but the slider stays in the previous position : FIXED
     // 153. Lazy evaluation for frame : FIXED
+    //147. Move info about solved puzzle to login message : FIXED
+    //146. When page for the first time loaded, the history does not load : FIXED
+    //137. Level 1 puzzle solved but disappeared  : FIXED
+    //135. null as game id in game history: FIXED
 
     // 118. Russ Williams  I was going through the tutorial problems (which are very easy
     indeed!) and I saw an apparent bug at problem 30 when I first see
@@ -168,6 +172,7 @@
     returned to problem 1.
     //124. Yes, that helps clear things up.  I would say that just by playing the puzzle, finding the perfect solution is not very intuitive.  I understand now what you mean, after having read your explanation.  Perhaps there's a way to advise the player why their solution is not perfect (highlight the cells that are attacked and shouldn't be while the banner is still open perhaps?) to make it more intuitive without having to go to the rule book.
 
+    158. achievements badges, e.g. for solving a puzzle fast, sticking to a puzzle for 20 minutes, solving x amount of puzzles, ...
     // 62. Make alerts less flashy : LOW PRIORITY
     // 82. Optimize and improve speed  : LOW PRIORITY
     // 86. Obfuscate javascript : LOW PRIORITY
@@ -199,20 +204,11 @@ https://codepen.io/saharmm/pen/XQQjwq  // 103.  PWA install
     //123. the level slider issue also occurs when coming from the daily puzzle, not just the tutorial : TEST
     //127. Move Blogpost to chedoku.com  : LOW PRIORITY
 
-
-    //134. Userdata to Cookie
-    //135. null as game id in game history
+    160. FindIndex instead of find and them FindIndex 
+   //134. Userdata to Cookie
     //136. Level 2 last puzzles are already solved
-    //137. Level 1 puzzle solved but disappeared 
-
-
     //140. Double click on copy to clipboard causes The following message is copied to the clipboard: "NaN" 
 
-    //146. When page for the first time loaded, the history does not load
-    //147. Move info about solved puzzle to login message
-
-
-    
 ```
 
 

@@ -131,29 +131,13 @@ function checkSolution() {
     newItem = { "t": parseInt(dur), "m": parseInt(current_puzzle_moves), 'l': parseInt(current_level), 'gid': parseInt(current_puzzleID), 'ts': Date.now(), 'st': foundStrictSolution }
     db_result  = user_game_results.find(element => element.l ==current_level && element.gid == current_puzzleID);
     resultIndex= user_game_results.findIndex(element => element.l ==current_level && element.gid == current_puzzleID);
-
-    try{
-      // Replace the current time/#moves with the best time/#moves/solution status.
-      // This is BUGGY since if play 3 times and
-      // in game 1, we have the best time but worse in all other criteria,
-      // in game 2, we have the best number of moves but worse in all other criteria,
-      // in game 3, we find the perfect solution but worse in all other criteria
-      // As a result of this process we have one database entry with the best numbers from these three games
-      // THE GOAL is to keep one entry for each game in the database and simplify the statistic generation
-      if (db_result.t < newItem.t ){
-        newItem.t = db_result.t
-      }
-      if (db_result.m < newItem.m ){
-        newItem.m = db_result.m
-      }
-      if (db_result.st ){
-        newItem.st = db_result.st
-      }
-      user_game_results[resultIndex] = newItem
-    }catch (error) {
+    if (db_result != undefined){
+      user_game_results[resultIndex] = best_result(db_result, newItem)
+      sync_user_game_results()
+    }else {
       // add the item
-      console.log(error)
       user_game_results.push(newItem)
+      sync_user_game_results()
     }
 
     try {
@@ -509,18 +493,74 @@ function puzzleids(lvl) {
   return (user_game_results.filter(x => x['level'] == lvl).map(x => x['gid']))
 }
 
+function sync_user_game_results(){
+  // sync user_game_results variable with its key in localStorage 
+  console.log("localStorageUpdate", user_game_results )
+  window.localStorage.setItem('user_game_results', JSON.stringify(user_game_results));
+}
 
+
+
+// Replace the current time/#moves with the best time/#moves/solution status.
+// This is BUGGY since if play 3 times and
+// in game 1, we have the best time but worse in all other criteria,
+// in game 2, we have the best number of moves but worse in all other criteria,
+// in game 3, we find the perfect solution but worse in all other criteria
+// As a result of this process we have one database entry with the best numbers from these three games
+// THE GOAL is to keep one entry for each game in the database and simplify the statistic generation
+function best_result(old_game, new_game){
+  // only t, m and st properties are checked and all other info from recent game is used
+  if (old_game.t < new_game.t ){
+    new_game.t = old_game.t
+  }
+  if (old_game.m < new_game.m ){
+    new_game.m = old_game.m
+  }
+  if (old_game.st ){
+    new_game.st = old_game.st
+  }
+  return new_game
+}
+
+function merge_user_game_results(old_results, new_results){
+  console.log(" MERGING", old_results , new_results)
+  merged_results = old_results
+  for (i in new_results){
+    new_game= new_results[i]
+    old_game_index = old_results.findIndex(element => element.l ==new_game.l && element.gid == new_game.gid) // find old game with the same level and gid
+    if (old_game_index < 0 ){
+      console.log("adding a new game info", new_game )
+      merged_results.push(new_game)
+    }else{
+      merged_results[old_game_index] = best_result(old_results[old_game_index], new_game)
+    }
+  }
+  return merged_results
+}
 
 function load_user_data() {
   console.log("load_user_data")
   try {
     database.ref().child('game_played/' + firebase.auth().currentUser.uid).once('value').then(function (lead) {
       //console.log(lead.val().user_game_results);
-      user_game_results = JSON.parse(lead.val());
+      server_user_game_results = JSON.parse(lead.val());
+      console.log("server_user_game_results", server_user_game_results.length)
+      console.log("user_game_resultsX", user_game_results.length)
+      if (user_game_results.length > 0 ){
+        console.log("Merging")
+        user_game_results = merge_user_game_results(server_user_game_results, user_game_results)
+        update_user_data();
+      }else{
+        user_game_results = server_user_game_results
+      }
+
+
       user_data_from_server = true
-      console.log("user_game_results:", user_game_results)
+      console.log("updated user_game_results:", user_game_results.length)
     });
   } catch (error) {
+    console.log(error)
+    console.log("User is not logged in, cannot load_user_data() ")
     user_data_from_server = false
   }
 
@@ -801,7 +841,11 @@ function account_ui() {
       }
     }
   } else {
-    loggin_text = 'You are <b>not</b> logged in.'
+
+    loggin_text = 'You are <b>not</b> logged in. ' 
+    if (user_game_results.length  > 0){
+      loggin_text += user_game_results.length + ' unsaved puzzle'
+    }
     $('#statistic').html("");
   }
 

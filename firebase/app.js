@@ -169,7 +169,6 @@ var handleSignedOutUser = function() {
   ui.start('#firebaseui-container', getUiConfig());
   // CHEDOKU code
   account_ui()
-  user_game_results = []
 };
 
 // Listen to change in auth state so it displays the correct UI for when
@@ -233,6 +232,8 @@ var initApp = function() {
   document.getElementById('sign-in-with-popup').addEventListener(
       'click', signInWithPopup);
   document.getElementById('sign-out').addEventListener('click', function() {
+    user_game_results = []
+    sync_user_game_results()
     firebase.auth().signOut();
   });
   /*
