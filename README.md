@@ -115,7 +115,7 @@
     //109. Clean up the rule section : FIXED
     //108. share button to social media : FIXED
     //111. Human readable time second -> minutes hours : FIXED
-    // 54. User -> levels -> puzzles in firebase and js (user_game_results) : FIXED, NEED MORE TESTING
+    // 54. User -> levels -> puzzles in firebase and js (userGameResults) : FIXED, NEED MORE TESTING
     //106. Notification that stays there.  FIXED
     //117. New puzzle should reset notification
     //120. Share to social media should have a date and chedoku included : FIXED
@@ -133,7 +133,7 @@
     //128. Make #login to work # FIXED
     //132. Inner links to puzzles don't work (e.g. game history & rules) : FIXED
     //124. Collect WHEN the user played a game :FIXED
-    //133. UI for user to see what they have solved, average time, etc puzzleids, findUnsolvedPuzzle, load_user_data, update_user_data
+    //133. UI for user to see what they have solved, average time, etc puzzleids, findUnsolvedPuzzle, loadUserGameFromServer, updateUserGameToServer
     //125. List of puzzles that are solved with the best time. Total time spent, and items with these info (date, level, puzzleid, time, num_moves, link to puzzle)  https://codepen.io/imoaazahmed/pen/QmBovY : FIXED
     //133. Fix internal link to puzzle in about/rule section : FIXED
     //129. Check if you play, then login it will not overwrite your data : WORKS FINE
@@ -187,7 +187,7 @@
     //134. URL hash for login changes to tutorial/puzzle.: LOW PRIORITY
     // 90. SPARE COUNT  https://github.com/oakmac/chessboardjs/pull/190 : LOW PRIORITY
     // 95. Popup subscription after 30 second of idle time : LOW PRIORITY
-    // 98. Make merge homepuzzle() with levelPuzzle()??
+    // 98. Make merge homePuzzle() with levelPuzzle()??
     // 99. Convert JavaScript to Mobile Apps for Android and iOS https://www.mobiloud.com/use-cases/convert-javascript-to-apps
 https://codepen.io/saharmm/pen/XQQjwq  // 103.  PWA install
 

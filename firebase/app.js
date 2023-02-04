@@ -81,7 +81,7 @@ function getUiConfig() {
         provider: 'apple.com',
       },
       */
-      
+
       /*
       firebaseui.auth.AnonymousAuthProvider.PROVIDER_ID
       */
@@ -168,7 +168,7 @@ var handleSignedOutUser = function() {
   document.getElementById('user-signed-out').style.display = 'block';
   ui.start('#firebaseui-container', getUiConfig());
   // CHEDOKU code
-  account_ui()
+  accountInfoUIrefresh()
 };
 
 // Listen to change in auth state so it displays the correct UI for when
@@ -232,8 +232,8 @@ var initApp = function() {
   document.getElementById('sign-in-with-popup').addEventListener(
       'click', signInWithPopup);
   document.getElementById('sign-out').addEventListener('click', function() {
-    user_game_results = []
-    sync_user_game_results()
+    userGameResults = []
+    syncUserGameResults()
     firebase.auth().signOut();
   });
   /*
@@ -264,11 +264,11 @@ var initApp = function() {
   document.getElementById('email-disableSignUp-status').addEventListener(
       'change', handleConfigChange);
   document.getElementById("email-disableSignUp-status").checked =
-      getDisableSignUpStatus();  
+      getDisableSignUpStatus();
   document.getElementById('admin-restricted-operation-status').addEventListener(
       'change', handleConfigChange);
   document.getElementById("admin-restricted-operation-status").checked =
-      getAdminRestrictedOperationStatus();  
+      getAdminRestrictedOperationStatus();
   */
 };
 

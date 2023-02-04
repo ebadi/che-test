@@ -227,7 +227,7 @@
       For example, in the puzzle below placing pawn on c2 is an imperfect solution but placing it on a2 is a perfect
       solution.
 
-      <a onclick="javascript:open_url(1, 3)" href="/#gid=3&amp;d=1&amp;">https://chedoku.com/#gid=3&d=1</a>
+      <a onclick="javascript:openPuzzleUrl(1, 3)" href="/#gid=3&amp;d=1&amp;">https://chedoku.com/#gid=3&d=1</a>
 
       In puzzles with black pieces, perfect solutions can be extra tricky to find, since the threats of white (+) and
       black (-) pieces can cancel each other out, creating squares that look like there is no threat but that actually
@@ -359,7 +359,7 @@
 
 
       <div id="levelSelector">
-        <span id="infotext1" style="margin-right:5px"> </span>
+        <span id="infotextLevelSlider" style="margin-right:5px"> </span>
         <div id="slider-range-min"></div>
       </div>
       <div style="display:none">
@@ -380,7 +380,7 @@
       </div>
 
       <div id="puzzleselector">
-        <span id="infotext2" style="margin-right:5px"></span>
+        <span id="infotextPuzzleID" style="margin-right:5px"></span>
         <button type="submit" id="next" class="stylish">
           <i class='material-icons'>arrow_forward_ios_outlined</i> Next
         </button>
@@ -392,7 +392,7 @@
 
     <div class="mycenter" id="boardcontrol">
       <span id="infodate" style="margin-right:5px; font-weight: bold;"></span>
-      <span id="infotext3" style="margin-right:5px; font-weight: bold;"></span><br>
+      <span id="infotextAccount" style="margin-right:5px; font-weight: bold;"></span><br>
       <button type="submit" id="solution" class="stylish">
         <i class='material-icons'>emoji_objects_outlined</i> Solution <br>
       </button>
@@ -452,7 +452,6 @@
             </p>
           </div>
           <div id="user-signed-out" class="hidden">
-            <h4> You are <b>not</b> logged in.</h4>
             Login to see and keep the history of the games you played and stay up-to-date on any recent changes.
             <fieldset style="display:none">
               <legend>Configuration</legend>
@@ -521,29 +520,28 @@
     var puzzleNumbers = {}
     var sparePieces = true
     var dropOffBoard = 'snapback'
-    var default_puzzleID = 1
-    var default_level = 3
-    var current_level = default_level
+    var defaultPuzzleID = 1
+    var defaultLevel = 3
+    var current_level = defaultLevel
     var current_puzzle_timer = new Date().getTime();
     var current_puzzle_moves = 0
     var allPuzzles
     var hashParams = []
-    var user_game_results  = []
-    user_game_results = JSON.parse (window.localStorage.getItem('user_game_results'))
-    console.log("XXXXXXXXXXXXXXx", )
-    if (user_game_results == null){
-      user_game_results  = []
+    var userGameResults  = []
+    userGameResults = JSON.parse (window.localStorage.getItem('userGameResults'))
+    if (userGameResults == null){
+      userGameResults  = []
     }
 
-    var boardtag = $('#board')
+    var boardElement = $('#board')
     var game = new Chess()
     var squareClass = 'square-55d63'
     var squareToHighlight = null
     var squareSource = null
     var squareDestination = null
-    var current_draggable = false
-    var current_showhint = true
-    var user_data_from_server = false
+    var currentDraggable = false
+    var currentShowHint = true
+    var userPuzzlesFromServer = false
 
     function isTouchDevice() {
       return (('ontouchstart' in window) ||
@@ -551,12 +549,12 @@
         (navigator.msMaxTouchPoints > 0));
     }
     if (isTouchDevice()) {
-      current_draggable = false
+      currentDraggable = false
       document.getElementById("switch-move").checked = true
       document.getElementById("switch-move").value = "off"
     } else {
       //console.log("PC, click move")
-      current_draggable = true
+      currentDraggable = true
       document.getElementById("switch-move").checked = false
       document.getElementById("switch-move").value = "on"
     }
@@ -568,14 +566,14 @@
 
     $('#dailybutton').on('click', function () {
       console.log("daily")
-      disable_all_components()
+      disableAllComponents()
       daily()
     })
     $('#solution').on('click', function () {
       var cfg = {
         dropOffBoard: dropOffBoard,
         sparePieces: sparePieces,
-        draggable: current_draggable,
+        draggable: currentDraggable,
         position: puzzleSolution,
         onDrop: onDrop,
         onMoveEnd: onMoveEnd,
@@ -628,13 +626,13 @@
 
 
       $('input[id="switch-move"]').click(function () {
-        current_draggable = !$(this).prop("checked")
+        currentDraggable = !$(this).prop("checked")
         reset();
         boardChangedUpdateGame();
       });
 
       $('input[id="switch-hint"]').click(function () {
-        current_showhint = !$(this).prop("checked")
+        currentShowHint = !$(this).prop("checked")
         reset();
         boardChangedUpdateGame();
       });
@@ -649,10 +647,10 @@
       } else if (window.location.hash.includes('login')) {
         login()
       } else {
-        homepuzzle()
+        homePuzzle()
       }
 
-      setTimeout(() => load_user_data(), 1000)
+      setTimeout(() => loadUserGameFromServer(), 1000)
     });
 
     $('#next').on('click', function () {
@@ -688,18 +686,14 @@
       current_puzzleID = hashParams['gid']
       current_level = hashParams['d']
       if (current_puzzleID === undefined || current_level === undefined) {
-        current_level = default_level
-        current_puzzleID = default_puzzleID
-        homepuzzle()
+        current_level = defaultLevel
+        current_puzzleID = defaultPuzzleID
+        homePuzzle()
       }
     } catch (e) {
-      current_level = default_level
-      current_puzzleID = default_puzzleID
+      current_level = defaultLevel
+      current_puzzleID = defaultPuzzleID
     }
-
-
-
-
 
   </script>
 
@@ -717,7 +711,6 @@
 
       <p style="font-size: 10px">We use Google Analytics that uses cookies. Please see our <a href="/privacy/"> Privacy
           Policy </a> before entering this website.</p>
-
 
       <a href="javascript:;" class="popup-tutorial">Tutorial</a>
       <a href="javascript:;" class="popup-daily">Today's Puzzle</a>

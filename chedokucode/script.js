@@ -1,5 +1,5 @@
 
-function adjustSlider(){
+function adjustSlider() {
   $(function () {
     $("#slider-range-min").slider({
       range: "min",
@@ -9,7 +9,7 @@ function adjustSlider(){
       slide: function (event, ui) {
         $("#level").val(ui.value);
         current_level = ui.value
-        current_puzzleID = default_puzzleID
+        current_puzzleID = defaultPuzzleID
         loadAllPuzzles(current_level)
         cuteToast(type = "reset", message = '')
         loadGame(current_level, current_puzzleID)
@@ -107,7 +107,7 @@ function checkSolution() {
     if (foundStrictSolution) {
       msg = `Congratulations! You found the perfect solution in ${current_puzzle_moves} moves and ${durStr}. Do you want to share it with your friends? `
       msgtype = "success"
-      if (current_level > 2020 &&  current_level < 2050) {
+      if (current_level > 2020 && current_level < 2050) {
         socialmedia_text = `I found the perfect solution for today's (${date}) Chedoku puzzle in ${current_puzzle_moves} moves and ${durStr}.  #chedoku #puzzle #chess Challenge yourself with today's puzzle here: `
         socialmedia_url = `https://www.chedoku.com/#dailypuzzle`
       } else {
@@ -117,7 +117,7 @@ function checkSolution() {
     } else {
       msg = `Congratulations! You found a valid solution in ${current_puzzle_moves} moves and ${durStr}. You can keep playing to find the perfect solution that has no additional threats on empty squares,   <a href="#Foo" onclick="rules(); return false;">Learn more about rules</a> .`
       msgtype = "warning"
-      if (current_level > 2020 &&  current_level < 2050) {
+      if (current_level > 2020 && current_level < 2050) {
         socialmedia_text = `I found a solution for today's (${date}) Chedoku puzzle in ${current_puzzle_moves} moves and ${durStr}.  #chedoku #puzzle #chess Challenge yourself with today's puzzle here: `
         socialmedia_url = `https://www.chedoku.com/#dailypuzzle`
       } else {
@@ -129,21 +129,21 @@ function checkSolution() {
     cuteToast(type = msgtype, message = msg, socialmedia_url = socialmedia_url, socialmedia_text = socialmedia_text)
     // t: time to completion, m: number of moves, l: level, gid: puzzleid, ts: Timestamp, st: solution type
     newItem = { "t": parseInt(dur), "m": parseInt(current_puzzle_moves), 'l': parseInt(current_level), 'gid': parseInt(current_puzzleID), 'ts': Date.now(), 'st': foundStrictSolution }
-    resultIndex= user_game_results.findIndex(element => element.l ==current_level && element.gid == current_puzzleID);
-    db_result = user_game_results[resultIndex]
-    if (resultIndex  != -1  ){
-      user_game_results[resultIndex] = best_result(db_result, newItem)
-      sync_user_game_results()
-    }else {
+    resultIndex = userGameResults.findIndex(element => element.l == current_level && element.gid == current_puzzleID);
+    db_result = userGameResults[resultIndex]
+    if (resultIndex != -1) {
+      userGameResults[resultIndex] = betterResult(db_result, newItem)
+      syncUserGameResults()
+    } else {
       // add the item
-      user_game_results.push(newItem)
-      sync_user_game_results()
+      userGameResults.push(newItem)
+      syncUserGameResults()
     }
 
     try {
-      update_user_data();
+      updateUserGameToServer();
       //loadingStatistic();
-      //load_user_data();
+      //loadUserGameFromServer();
     }
     catch (e) {
       console.log("User is not logged in to save played games")
@@ -154,7 +154,7 @@ function checkSolution() {
 
 async function copyContent() {
   try {
-    msg= document.querySelector('#cliboardinput').text
+    msg = document.querySelector('#cliboardinput').text
     await navigator.clipboard.writeText(msg);
     cuteToast(type = 'success', message = `<b>The following message is copied to the clipboard</b>:<br> "${msg}"`)
   } catch (err) {
@@ -174,7 +174,7 @@ function influence(boardElement, fen) {
 
   allSquares.forEach(function (square, i) {
     values[i] = defenders[i] - attackers[i]
-    if (current_showhint) {
+    if (currentShowHint) {
       $('.square-' + square).find('.notation-322f9').remove()
       if (values[i] == 0 || square in board.position()) {
         $('.square-' + square).append('<div style="color:black"class="notation-322f9 ' + styleNotation + '"></div>')
@@ -248,7 +248,7 @@ function initialPieces(pieces) {
   return positionPieces
 }
 function handler() {
-  if (current_draggable) return
+  if (currentDraggable) return
   square = this.dataset["square"] // $(this).data("square");
   console.log("clicked on " + square);
 
@@ -259,7 +259,7 @@ function handler() {
       squareSource = square
     } else {
       console.log("Source is Changed");
-      boardtag.find('.square-' + squareSource).removeClass('myhighlight');
+      boardElement.find('.square-' + squareSource).removeClass('myhighlight');
       $(this).addClass('myhighlight');
       squareSource = square
     }
@@ -267,7 +267,7 @@ function handler() {
     console.log("empty square, possible to move the piece = destination clicked")
     squareDestination = square
     board.move(squareSource + '-' + squareDestination)
-    boardtag.find('.square-' + squareSource).removeClass('myhighlight');
+    boardElement.find('.square-' + squareSource).removeClass('myhighlight');
     squareSource = null
     squareDestination = null
   }
@@ -277,11 +277,11 @@ function registerSquareOnClickHandler() {
   for (i in allSquares) {
     square = allSquares[i]
     //console.log(square)
-    boardtag.find('.square-' + square).click(handler)
+    boardElement.find('.square-' + square).click(handler)
   }
 }
 
-function current_dayofyear() {
+function currentDayOfYear() {
   var now = new Date();
   var start = new Date(now.getFullYear(), 0, 0);
   var diff = now - start;
@@ -290,7 +290,7 @@ function current_dayofyear() {
   return day
 }
 
-function current_year() {
+function currentYear() {
   var year = new Date().getFullYear();
   return year
 }
@@ -300,7 +300,7 @@ function reset() {
   var cfg = {
     dropOffBoard: dropOffBoard,
     sparePieces: sparePieces,
-    draggable: current_draggable,
+    draggable: currentDraggable,
     position: initialPieces(puzzlePieces),
     onDrop: onDrop,
     onMoveEnd: onMoveEnd,
@@ -314,14 +314,14 @@ function reset() {
   registerSquareOnClickHandler()
 }
 
-function base_url() {
+function baseUrl() {
   //window.location.href.split('?')[0]
   return window.location.origin + window.location.pathname;
 }
 
 function loadAllPuzzles() {
   //console.log("loading level", current_level)
-  let path = base_url()
+  let path = baseUrl()
   jsonUrl = path + '/puzzles/level' + current_level + '/list.json'
   $.getJSON(jsonUrl, function (data) {
     //console.log(data)
@@ -330,7 +330,7 @@ function loadAllPuzzles() {
 }
 
 function loadPuzzle(level, puzzleID) {
-  let path = base_url()
+  let path = baseUrl()
   jsonUrl = path + '/puzzles/level' + level + '/' + puzzleID + '.json'
   // console.log(puzzleID, jsonUrl)
   $.getJSON(jsonUrl, function (data) {
@@ -347,10 +347,10 @@ function loadPuzzle(level, puzzleID) {
     boardChangedUpdateGame();
     //boardChangedUpdateGame();
 
-    account_ui()
+    accountInfoUIrefresh()
 
-    $('#infotext1').html('Challenge yourself by adjusting the difficulty level: <b> ' + current_level + '</b>');
-    $('#infotext2').html('Puzzle ID: <b> ' + puzzleID + '</b>');
+    $('#infotextLevelSlider').html('Challenge yourself by adjusting the difficulty level: <b> ' + current_level + '</b>');
+    $('#infotextPuzzleID').html('Puzzle ID: <b> ' + puzzleID + '</b>');
     document.getElementById("offboard_item").checked = (dropOffBoard == 'trash');
     document.getElementById("strictmode_item").checked = strictSolution;
 
@@ -368,7 +368,7 @@ function loadPuzzle(level, puzzleID) {
       window.location.hash = 'dailypuzzle'
     } else if (current_level < 50) {
       updateHash(hashParams)
-    } else if (current_level > 2020 &&  current_level < 2050) {
+    } else if (current_level > 2020 && current_level < 2050) {
       window.location.hash = 'dailypuzzle'
     } else if (current_level == 999) {
       window.location.hash = 'tutorial'
@@ -403,7 +403,7 @@ function onChangeHook() {
 
 var onMoveEnd = function (oldPos, newPos) {
   // console.log("onMoveEnd", board.fen());
-  boardtag.find('.square-' + squareToHighlight).addClass('myhighlight')
+  boardElement.find('.square-' + squareToHighlight).addClass('myhighlight')
   boardChangedUpdateGame();
 };
 
@@ -442,10 +442,10 @@ function colorDiff(num) {
 
 function loadGame(level, puzzleID) {
   adjustSlider()
-  if (level < 2000 & puzzleID > 30){
+  if (level < 2000 & puzzleID > 30) {
     current_level = level + 1;
-    current_puzzleID = 1 ;
-  } else{
+    current_puzzleID = 1;
+  } else {
     current_level = level;
     current_puzzleID = puzzleID;
   }
@@ -490,13 +490,13 @@ function updateHash(hashParams) {
 }
 
 function puzzleids(lvl) {
-  return (user_game_results.filter(x => x['level'] == lvl).map(x => x['gid']))
+  return (userGameResults.filter(x => x['level'] == lvl).map(x => x['gid']))
 }
 
-function sync_user_game_results(){
-  // sync user_game_results variable with its key in localStorage 
-  console.log("localStorageUpdate", user_game_results )
-  window.localStorage.setItem('user_game_results', JSON.stringify(user_game_results));
+function syncUserGameResults() {
+  // sync userGameResults variable with its key in localStorage 
+  console.log("localStorageUpdate", userGameResults)
+  window.localStorage.setItem('userGameResults', JSON.stringify(userGameResults));
 }
 
 
@@ -508,133 +508,133 @@ function sync_user_game_results(){
 // in game 3, we find the perfect solution but worse in all other criteria
 // As a result of this process we have one database entry with the best numbers from these three games
 // THE GOAL is to keep one entry for each game in the database and simplify the statistic generation
-function best_result(old_game, new_game){
+function betterResult(old_game, new_game) {
   // only t, m and st properties are checked and all other info from recent game is used
-  if (old_game.t < new_game.t ){
+  if (old_game.t < new_game.t) {
     new_game.t = old_game.t
   }
-  if (old_game.m < new_game.m ){
+  if (old_game.m < new_game.m) {
     new_game.m = old_game.m
   }
-  if (old_game.st ){
+  if (old_game.st) {
     new_game.st = old_game.st
   }
   return new_game
 }
 
-function merge_user_game_results(old_results, new_results){
-  console.log(" MERGING", old_results , new_results)
+function mergeGameResults(old_results, new_results) {
+  console.log(" MERGING", old_results, new_results)
   merged_results = old_results
-  for (i in new_results){
-    new_game= new_results[i]
-    old_game_index = old_results.findIndex(element => element.l ==new_game.l && element.gid == new_game.gid) // find old game with the same level and gid
-    if (old_game_index < 0 ){
-      console.log("adding a new game info", new_game )
+  for (i in new_results) {
+    new_game = new_results[i]
+    old_game_index = old_results.findIndex(element => element.l == new_game.l && element.gid == new_game.gid) // find old game with the same level and gid
+    if (old_game_index < 0) {
+      console.log("adding a new game info", new_game)
       merged_results.push(new_game)
-    }else{
-      merged_results[old_game_index] = best_result(old_results[old_game_index], new_game)
+    } else {
+      merged_results[old_game_index] = betterResult(old_results[old_game_index], new_game)
     }
   }
   return merged_results
 }
 
-function load_user_data() {
-  console.log("load_user_data")
+function loadUserGameFromServer() {
+  console.log("loadUserGameFromServer")
   try {
     database.ref().child('game_played/' + firebase.auth().currentUser.uid).once('value').then(function (lead) {
-      //console.log(lead.val().user_game_results);
-      server_user_game_results = JSON.parse(lead.val());
-      console.log("server_user_game_results", server_user_game_results.length)
-      console.log("user_game_resultsX", user_game_results.length)
-      if (user_game_results.length > 0 ){
+      //console.log(lead.val().userGameResults);
+      serverUserGameResults = JSON.parse(lead.val());
+      console.log("serverUserGameResults", serverUserGameResults.length)
+      console.log("userGameResultsX", userGameResults.length)
+      if (userGameResults.length > 0) {
         console.log("Merging")
-        user_game_results = merge_user_game_results(server_user_game_results, user_game_results)
-        update_user_data();
-      }else{
-        user_game_results = server_user_game_results
+        userGameResults = mergeGameResults(serverUserGameResults, userGameResults)
+        updateUserGameToServer();
+      } else {
+        userGameResults = serverUserGameResults
       }
 
 
-      user_data_from_server = true
-      console.log("updated user_game_results:", user_game_results.length)
+      userPuzzlesFromServer = true
+      console.log("updated userGameResults:", userGameResults.length)
     });
   } catch (error) {
-    console.log(error)
-    console.log("User is not logged in, cannot load_user_data() ")
-    user_data_from_server = false
+    //console.log(error)
+    console.log("User is not logged in, cannot loadUserGameFromServer() ")
+    userPuzzlesFromServer = false
   }
 
   //setTimeout(() => loadGame(current_level, current_puzzleID), 200)
-  setTimeout(() => account_ui(), 300)
+  setTimeout(() => accountInfoUIrefresh(), 300)
 }
 
-function update_user_data() {
-  // this will sync user_game_results with server
+function updateUserGameToServer() {
+  // this will sync userGameResults with server
   // console.log(firebase.auth().currentUser.email)
   const database = firebase.database()
   var database_ref = database.ref()
   user = firebase.auth().currentUser
-  if (Object.keys(user_game_results).length > 0) {
-    //console.log("JSON user_game_results", JSON.stringify(user_game_results))
-    database_ref.child('game_played/' + user.uid).set(JSON.stringify(user_game_results))
+  if (Object.keys(userGameResults).length > 0) {
+    //console.log("JSON userGameResults", JSON.stringify(userGameResults))
+    database_ref.child('game_played/' + user.uid).set(JSON.stringify(userGameResults))
   }
 }
-function open_url(level, gid){
+function openPuzzleUrl(level, gid) {
   console.log("loading puzzle", level, gid)
   loadGame(level, gid)
-  homepuzzle()
+  homePuzzle()
 }
 
-function loadingStatistic(){
-  setTimeout(() => load_user_data(), 300)
+function loadingStatistic() {
+  setTimeout(() => loadUserGameFromServer(), 300)
   setTimeout(() => statisticUI(), 600)
 }
 
-function secondToStr(input_second){
-  var minutes = ("0" +Math.floor(input_second/ 60)).slice(-2) ;
+function secondToStr(input_second) {
+  var minutes = ("0" + Math.floor(input_second / 60)).slice(-2);
   var seconds = ("0" + (input_second - minutes * 60)).slice(-2);
-  return minutes + ":" + seconds ;
+  return minutes + ":" + seconds;
 }
-function statisticUI(){
+function statisticUI() {
   //console.log("statisticUI");
   e = document.getElementById("statistic");
-  e.innerHTML =''
-  levels= [2028,2027, 2026, 2025, 2024, 2023, 2022, 2021, 2020, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]
-  for(puzzle_inx in levels){
-    level= levels[puzzle_inx]
-    if (user_game_results.find(element => element.l == level) !=undefined  ){
-      filtered_items= user_game_results.filter(element => element.l == level)
-      filtered_items_len= filtered_items.length
-      filtered_items_avg_moves = (filtered_items.reduce( (accumulator, currentValue)  => accumulator + currentValue.m, 0 ) / filtered_items_len )
-      filtered_items_avg_time = (filtered_items.reduce( (accumulator, currentValue)  => accumulator + currentValue.t, 0 ) /  filtered_items_len )
-      if (level  < 2100 && level > 2000){
+  e.innerHTML = ''
+  levels = [2028, 2027, 2026, 2025, 2024, 2023, 2022, 2021, 2020, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]
+  for (puzzle_inx in levels) {
+    level = levels[puzzle_inx]
+    if (userGameResults.find(element => element.l == level) != undefined) {
+      filtered_items = userGameResults.filter(element => element.l == level)
+      filtered_items_len = filtered_items.length
+      filtered_items_avg_moves = (filtered_items.reduce((accumulator, currentValue) => accumulator + currentValue.m, 0) / filtered_items_len)
+      filtered_items_avg_time = (filtered_items.reduce((accumulator, currentValue) => accumulator + currentValue.t, 0) / filtered_items_len)
+      if (level < 2100 && level > 2000) {
         level_format = "🗓️ Year "
-      } else{
+      } else {
         level_format = "🌡️ Difficulty Level "
       }
       filtered_items_avg_time = secondToStr(parseInt(filtered_items_avg_time))
       filtered_items_avg_moves = parseInt(filtered_items_avg_moves)
       e.innerHTML += `<div class="accordion-container"> <button class="accordion"><b>${level_format} ${level}</b> <br>Solved puzzles:${filtered_items_len} | Avg Time: ${filtered_items_avg_time} | Avg Moves:${filtered_items_avg_moves} </button> <div class="panel" id="level${level}"></div> </div>`;
-      for(game_inx in filtered_items){
+      for (game_inx in filtered_items) {
         game_info = filtered_items[game_inx]
         el = document.getElementById(`level${level}`);
         var date = new Date(game_info.ts);
-        date_format= date.getFullYear() + "-" + ("0" + (date.getMonth() + 1)).slice(-2) + "-" + ("0" + date.getDate()).slice(-2)
+        date_format = date.getFullYear() + "-" + ("0" + (date.getMonth() + 1)).slice(-2) + "-" + ("0" + date.getDate()).slice(-2)
         human_time = secondToStr(game_info.t)
-        if (game_info.st){
+        if (game_info.st) {
           perfect_format = "✅"
-        }else{
+        } else {
           perfect_format = "☑️"
         }
-        el.innerHTML += `<p>${date_format} <a onclick="javascript:open_url(${level}, ${game_info.gid})" href="/#gid=${game_info.gid}&amp;d=${level}&amp;">Puzzle ID ${game_info.gid}</a> &nbsp; Time: ${human_time} &nbsp; Moves:${game_info.m}  ${perfect_format}</p>`
+        el.innerHTML += `<p>${date_format} <a onclick="javascript:openPuzzleUrl(${level}, ${game_info.gid})" href="/#gid=${game_info.gid}&amp;d=${level}&amp;">Puzzle ID ${game_info.gid}</a> &nbsp; Time: ${human_time} &nbsp; Moves:${game_info.m}  ${perfect_format}</p>`
       }
     }
   }
 
 
-  //console.log("statisticUI > user_game_results:", user_game_results)
+  //console.log("statisticUI > userGameResults:", userGameResults)
 
-  $(".accordion").on("click", function() {
+  $(".accordion").on("click", function () {
     $(this).toggleClass("active");
     $(this).next().slideToggle(200);
   });
@@ -648,7 +648,7 @@ function square2element(square) {
   return document.querySelectorAll('.square-' + square)[0]
 }
 
-function is_element_square(element, square) {
+function isElementSquare(element, square) {
   return String(element.node.classList).includes(square)
 }
 
@@ -659,18 +659,18 @@ function is_element_square(element, square) {
 function driverjs_1() {
   const driver = new Driver({
     onNext: (Element) => {
-      if (is_element_square(Element, "b2")) {
+      if (isElementSquare(Element, "b2")) {
         board.move('a1-b4')
       }
-      if (is_element_square(Element, "h5")) {
+      if (isElementSquare(Element, "h5")) {
         board.move('b4-g4')
       }
-      if (is_element_square(Element, "g4")) {
+      if (isElementSquare(Element, "g4")) {
         board.position('2p1b3/8/8/8/8/8/8/8 w - - 0 1')
       }
     }, onReset: (Element) => {
-      // current_level = default_level
-      // current_puzzleID = default_puzzleID
+      // current_level = defaultLevel
+      // current_puzzleID = defaultPuzzleID
       // loadAllPuzzles(current_level)
       // console.log("change current_level", current_level ) ;
       // $("#slider-range-min").slider({value : current_level} )
@@ -780,7 +780,7 @@ function driverjs_1() {
 
 
 
-function load_tutorials() {
+function loadTutorials() {
   allPuzzles = [1, 2, 3, 4]
   current_level = 999
   console.log("change current_level", current_level);
@@ -789,7 +789,7 @@ function load_tutorials() {
   setTimeout(() => driverjs_1(), 500);
 }
 
-function disable_all_components() {
+function disableAllComponents() {
   document.getElementById("board").style.display = "none";
   document.getElementById("puzzleLevelSelector").style.display = "none";
   document.getElementById("login").style.display = "none";
@@ -800,16 +800,16 @@ function disable_all_components() {
   document.getElementById("rules").style.display = "none";
 }
 
-function current_date() {
+function currentDate() {
   const timeElapsed = Date.now();
   const today = new Date(timeElapsed);
   return today.toDateString();
 }
-function homepuzzle(nextActive = true) {
-  console.log("homepuzzle")
+function homePuzzle(nextActive = true) {
+
   loadAllPuzzles(current_level)
-  load_user_data()
-  disable_all_components();
+  loadUserGameFromServer()
+  disableAllComponents();
   document.getElementById("board").style.display = "block";
 
   document.getElementById("boardcontrol").style.display = "block";
@@ -824,74 +824,68 @@ function homepuzzle(nextActive = true) {
   boardChangedUpdateGame();
 }
 
-function account_ui() {
-  prev_puzzle_info = ''
-  if (user_data_from_server) {
-    loggin_text = 'You are logged in.'
-    for (i in user_game_results){
-      game_info = user_game_results[i]
-      if (game_info.l == current_level && game_info.gid == current_puzzleID ){
+function accountInfoUIrefresh() {
+  prevPuzzleInfo = ''
+  if (userPuzzlesFromServer) {
+    loggedInText = 'You are logged in.'
+    for (i in userGameResults) {
+      game_info = userGameResults[i]
+      if (game_info.l == current_level && game_info.gid == current_puzzleID) {
         human_time = secondToStr(game_info.t)
-        if (game_info.st){
+        if (game_info.st) {
           perfect_format = "✅"
-        }else{
+        } else {
           perfect_format = "☑️"
         }
-        prev_puzzle_info = `&nbsp; Record (Time: ${human_time} &nbsp; Moves:${game_info.m}  ${perfect_format})`
+        prevPuzzleInfo = `&nbsp; Record (Time: ${human_time} &nbsp; Moves:${game_info.m}  ${perfect_format})`
       }
     }
   } else {
-
-    loggin_text = 'You are <b>not</b> logged in. ' 
-    if (user_game_results.length  > 0){
-      loggin_text += user_game_results.length + ' unsaved puzzle'
+    if (userGameResults.length > 0) {
+      loggedInText = 'You are not logged in. ' +  userGameResults.length + ' unsaved puzzle'
     }
     $('#statistic').html("");
   }
-
-
-
-  $('#infotext3').html(loggin_text + prev_puzzle_info);
+  $('#infotextAccount').html(loggedInText + prevPuzzleInfo);
 }
 
 function daily() {
-  current_level = current_year();
-  current_puzzleID = current_dayofyear()
-  homepuzzle(nextActive = false)
+  current_level = currentYear();
+  current_puzzleID = currentDayOfYear()
+  homePuzzle(nextActive = false)
 
-
-  $('#infodate').html("<p>Daily puzzle of " + current_date() + "</p>");
+  $('#infodate').html("<p>Daily puzzle of " + currentDate() + "</p>");
   window.location.hash = 'dailypuzzle'
 }
 
 function tutorial() {
-  disable_all_components();
+  disableAllComponents();
   document.getElementById("board").style.display = "block";
   document.getElementById("puzzleLevelSelector").style.display = "block";
   document.getElementById("boardcontrol").style.display = "block";
-  load_tutorials();
+  loadTutorials();
   window.location.hash = 'tutorial'
 }
 function login() {
-  disable_all_components();
+  disableAllComponents();
   document.getElementById("login").style.display = "block";
   window.location.hash = 'login'
   loadingStatistic()
 }
 
 function rules() {
-  disable_all_components();
+  disableAllComponents();
   document.getElementById("rules").style.display = "block";
   window.location.hash = 'rules'
 }
 function about() {
-  disable_all_components();
+  disableAllComponents();
   document.getElementById("about").style.display = "block";
   window.location.hash = 'about'
 }
 
 function subscription() {
-  disable_all_components();
+  disableAllComponents();
   document.getElementById("mailist").style.display = "block";
   window.location.hash = 'mailist'
 }
@@ -919,14 +913,14 @@ function subscription() {
     subscription()
   }
   document.getElementById('item-home').onclick = function (e) {
-    current_level = default_level;
-    current_puzzleID = default_puzzleID;
-    homepuzzle()
+    current_level = defaultLevel;
+    current_puzzleID = defaultPuzzleID;
+    homePuzzle()
   }
   document.getElementById('item-home-side').onclick = function (e) {
-    current_level = default_level;
-    current_puzzleID = default_puzzleID;
-    homepuzzle()
+    current_level = defaultLevel;
+    current_puzzleID = defaultPuzzleID;
+    homePuzzle()
   }
   document.getElementById('item-daily').onclick = function (e) {
     daily()
