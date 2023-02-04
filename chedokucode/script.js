@@ -842,7 +842,7 @@ function accountInfoUIrefresh() {
     }
   } else {
     if (userGameResults.length > 0) {
-      loggedInText = 'You are not logged in. ' +  userGameResults.length + ' unsaved puzzle'
+      loggedInText = 'You are not logged in.  <span class="red-bubble">' +  userGameResults.length + ' unsaved puzzles</span>'
     }
     $('#statistic').html("");
   }

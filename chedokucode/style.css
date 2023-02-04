@@ -460,6 +460,15 @@ body {
 }
 
 
+.red-bubble {
+  font-size: 14px;
+  font-weight: bold;
+  color: white;
+  background: #b8111a;
+  box-shadow: -2px 2px 3px -1px #aaaaaa;
+  padding: 3px 10px;
+}
+
 
 .popup-overlay {
   display: none;
