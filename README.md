@@ -154,6 +154,8 @@
     //146. When page for the first time loaded, the history does not load : FIXED
     //137. Level 1 puzzle solved but disappeared  : FIXED
     //135. null as game id in game history: FIXED
+    160. FindIndex instead of find and them FindIndex : FIXED
+    //134. Userdata to Cookie : NOT GOING TO BE FIXED. DATA ARE HEAVY
 
     // 118. Russ Williams  I was going through the tutorial problems (which are very easy
     indeed!) and I saw an apparent bug at problem 30 when I first see
@@ -190,7 +192,7 @@
     // 98. Make merge homePuzzle() with levelPuzzle()??
     // 99. Convert JavaScript to Mobile Apps for Android and iOS https://www.mobiloud.com/use-cases/convert-javascript-to-apps
 https://codepen.io/saharmm/pen/XQQjwq  // 103.  PWA install
-
+    //140. Double click on copy to clipboard causes The following message is copied to the clipboard: "NaN"  : LOW PRIORITY
     //100. One UI suggestion is to use a diverging color palette for the larger numbers so there are different hues for too many versus too few attackers.
     //101. Create a FAQ from Popular posts (links in accounts.txt)
     //102. Printer friendly puzzle book
@@ -204,10 +206,9 @@ https://codepen.io/saharmm/pen/XQQjwq  // 103.  PWA install
     //123. the level slider issue also occurs when coming from the daily puzzle, not just the tutorial : TEST
     //127. Move Blogpost to chedoku.com  : LOW PRIORITY
 
-    160. FindIndex instead of find and them FindIndex 
-   //134. Userdata to Cookie
+
     //136. Level 2 last puzzles are already solved
-    //140. Double click on copy to clipboard causes The following message is copied to the clipboard: "NaN" 
+
 
 ```
 
