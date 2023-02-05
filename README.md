@@ -56,12 +56,12 @@
 
     // 48. Fix button spacing: FIXED 
     // 51. Explain the benefits of registering :FIXED
-    // 58. The color numbers are not adjusted on init (all red) https://chedoku.com/#gid=23&d=5& : FIXED
+    // 58. The color numbers are not adjusted on init (all red) https://www.chedoku.com/#gid=23&d=5& : FIXED
     // 47. PERFORMANCE: Double click on next before the previous puzzle is loaded, causes the browser not to be responsive : FIXED, NEEDED 
     // 59. tutorial interaction with user and new user interface : FIXED
     // 61. investigate https://www.seoptimer.com/www.chedoku.com
     // 45. interactive tutorial or walk-through, threat number in solution ->> Click on tutorial loads a new game list -: FIXED
-    // 65. http://chedoku.com/#gid=27&d=3& has only one piece to move but two areas that need solving.   ---> REMOVED, FIXED in Python puzzle generator
+    // 65. http://www.chedoku.com/#gid=27&d=3& has only one piece to move but two areas that need solving.   ---> REMOVED, FIXED in Python puzzle generator
     // 61. Strange solution !!! http://0.0.0.0:8000/#gid=25&d=10&   !!!!!!!  FIXED
     // 64. After the tutorial, reset the puzzle list.
     // 56. puzzles with two kings are not handled correctly : FIXED in puzzled generator
@@ -86,7 +86,7 @@
     // 37. termly.io  Privacy policy : FIXED, other alternative is used
     // 73. Option to remove the numerical hint, printer friendly : FIXED 
     // 83. Many issues with level 1 puzzles
-    // 72. Replace https://chedoku.com/#gid=5&d=5&
+    // 72. Replace https://www.chedoku.com/#gid=5&d=5&
     // 81. Guided mode / annual mode with black  appear and disappear
     // 58. Routine to handle when all puzzle for a level is solved : FIXED, RESET TO ONE, SHOULD BE TESTED
     // 87. UI improvement https://chess.stackexchange.com/questions/17334/arena-how-do-i-turn-off-highlighting-of-occupied-squares-under-attack

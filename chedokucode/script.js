@@ -826,6 +826,7 @@ function homePuzzle(nextActive = true) {
 
 function accountInfoUIrefresh() {
   prevPuzzleInfo = ''
+  loggedInText = ''
   if (userPuzzlesFromServer) {
     loggedInText = 'You are logged in.'
     for (i in userGameResults) {
