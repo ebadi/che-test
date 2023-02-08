@@ -38,11 +38,13 @@ function getUiConfig() {
       // TODO(developer): Remove the providers you don't need for your app.
       {
         provider: firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+        iconUrl: 'firebase/logo/google.svg',
         // Required to enable ID token credentials for this provider.
         clientId: CLIENT_ID
       },
       {
         provider: firebase.auth.FacebookAuthProvider.PROVIDER_ID,
+        iconUrl: 'firebase/logo/facebook.svg',
         scopes :[
           'public_profile',
           'email',
@@ -51,7 +53,10 @@ function getUiConfig() {
         ]
       },
 
-      firebase.auth.TwitterAuthProvider.PROVIDER_ID,
+      {
+        provider: firebase.auth.TwitterAuthProvider.PROVIDER_ID,
+        iconUrl: 'firebase/logo/twitter.svg'
+      },
 
       /*
       firebase.auth.GithubAuthProvider.PROVIDER_ID,
@@ -59,6 +64,7 @@ function getUiConfig() {
       {
         provider: firebase.auth.EmailAuthProvider.PROVIDER_ID,
         // Whether the display name should be displayed in Sign Up page.
+        iconUrl: 'firebase/logo/mail.svg',
         requireDisplayName: true,
         signInMethod: getEmailSignInMethod(),
         disableSignUp: {

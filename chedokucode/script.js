@@ -795,7 +795,7 @@ function disableAllComponents() {
   document.getElementById("login").style.display = "none";
   document.getElementById("boardcontrol").style.display = "none";
   document.getElementById("about").style.display = "none";
-  document.getElementById("mailist").style.display = "none";
+  //document.getElementById("mailist").style.display = "none";
   document.getElementById("footer").style.display = "none";
   document.getElementById("rules").style.display = "none";
 }
@@ -907,12 +907,14 @@ function subscription() {
     document.querySelector('.side-bar').classList.add('side-bar-visible');
     document.querySelector('.overlay').classList.add('visible');
   }
+  /*
   document.getElementById('item-mailist').onclick = function (e) {
     subscription()
   }
   document.getElementById('item-mailist-side').onclick = function (e) {
     subscription()
   }
+  */
   document.getElementById('item-home').onclick = function (e) {
     current_level = defaultLevel;
     current_puzzleID = defaultPuzzleID;
