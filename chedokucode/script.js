@@ -349,7 +349,7 @@ function loadPuzzle(level, puzzleID) {
 
     accountInfoUIrefresh()
 
-    $('#infotextLevelSlider').html('Challenge yourself by adjusting the difficulty level: <b> ' + current_level + '</b>');
+    $('#infotextLevelSlider').html('Change difficulty level: <b> ' + current_level + '</b>');
     $('#infotextPuzzleID').html('Puzzle ID: <b> ' + puzzleID + '</b>');
     document.getElementById("offboard_item").checked = (dropOffBoard == 'trash');
     document.getElementById("strictmode_item").checked = strictSolution;

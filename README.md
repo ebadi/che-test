@@ -205,10 +205,10 @@ https://codepen.io/saharmm/pen/XQQjwq  // 103.  PWA install
     //117. Reset doesn't close the solution notification LOW PRIORITY
     //123. the level slider issue also occurs when coming from the daily puzzle, not just the tutorial : TEST
     //127. Move Blogpost to chedoku.com  : LOW PRIORITY
-
+    //161. Use defer and async to speed up https://javascript.info/script-async-defer
 
     //136. Level 2 last puzzles are already solved
-
+    // <a> without the title attribute. <a href="/" title="HOME - HTML Code Tutorials">Click to visit home page.</a>
 
 ```
 
