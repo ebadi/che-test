@@ -867,11 +867,52 @@ function tutorial() {
   loadTutorials();
   window.location.hash = 'tutorial'
 }
+
+
+function loadScript(url) {
+	return new Promise(function(resolve, reject) {
+		let script = document.createElement('script');
+		script.src = url;
+		script.async = false;
+		script.onload = function() {
+			resolve(url);
+		};
+		script.onerror = function() {
+			reject(url);
+		};
+		document.body.appendChild(script);
+	});
+}
+
+
 function login() {
+  console.log("LOGIN")
+  let scripts = [
+    'static/js-css-lib/firebasejs/9.13.0/firebase-app-compat.js',
+    'static/js-css-lib/firebasejs/9.13.0/firebase-auth-compat.js',
+    'static/js-css-lib/firebasejs/9.13.0/firebase-database-compat.js',
+    'firebase/config.js',
+    'firebase/common.js',
+    'firebase/dist/firebaseui.js',
+    'firebase/app.js'
+  ];
+// save all Promises as array
+let promises = [];
+scripts.forEach(function(url) {
+	promises.push(loadScript(url));
+});
+Promise.all(promises)
+.then(function() {
+	console.log('all scripts loaded');
   disableAllComponents();
   document.getElementById("login").style.display = "block";
   window.location.hash = 'login'
   loadingStatistic()
+}).catch(function(script) {
+	console.log(script + ' failed to load');
+});
+
+
 }
 
 function rules() {

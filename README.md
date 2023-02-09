@@ -210,6 +210,11 @@ https://codepen.io/saharmm/pen/XQQjwq  // 103.  PWA install
     //136. Level 2 last puzzles are already solved
     // <a> without the title attribute. <a href="/" title="HOME - HTML Code Tutorials">Click to visit home page.</a>
 
+  var script = document.createElement("script");
+  script.src = "remote.js";
+  
+index.html
+
 ```
 
 
