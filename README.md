@@ -156,6 +156,22 @@
     //135. null as game id in game history: FIXED
     160. FindIndex instead of find and them FindIndex : FIXED
     //134. Userdata to Cookie : NOT GOING TO BE FIXED. DATA ARE HEAVY
+     //119. feature request: keep the difficulty slider but hide all other settings behind a button: click/drag mode, hint mode [optional new settings: include/exclude black pieces . Zone mode :  REJECT
+    //120. Setting for filter black pieces :  REJECT
+    //105. Share my time and #moves :  REJECT, other ALTERNATIVE
+    //118. feature request: make the login useful by showing stats about solved puzzles, then add the login to the main popup message, and optionally create a message to remind users to log in to save their data LOW PRIORITY
+    //109. You data is in cookie, if you want to save it your need to register. Long term feature LOW PRIORITY
+    //117. Reset doesn't close the solution notification LOW PRIORITY
+    //123. the level slider issue also occurs when coming from the daily puzzle, not just the tutorial : TEST
+    //127. Move Blogpost to chedoku.com  : LOW PRIORITY
+    //161. Use defer and async to speed up https://javascript.info/script-async-defer :FIXED
+
+    //136. Level 2 last puzzles are already solved
+    // <a> without the title attribute. <a href="/" title="HOME - HTML Code Tutorials">Click to visit home page.</a> : FIXED
+    // perfect solution icon to FAQ and notification : FIXED
+
+
+
 
     // 118. Russ Williams  I was going through the tutorial problems (which are very easy
     indeed!) and I saw an apparent bug at problem 30 when I first see
@@ -197,19 +213,8 @@ https://codepen.io/saharmm/pen/XQQjwq  // 103.  PWA install
     //101. Create a FAQ from Popular posts (links in accounts.txt)
     //102. Printer friendly puzzle book
     //103. Install GA tag on wordpress
-     //119. feature request: keep the difficulty slider but hide all other settings behind a button: click/drag mode, hint mode [optional new settings: include/exclude black pieces . Zone mode :  REJECT
-    //120. Setting for filter black pieces :  REJECT
-    //105. Share my time and #moves :  REJECT, other ALTERNATIVE
-    //118. feature request: make the login useful by showing stats about solved puzzles, then add the login to the main popup message, and optionally create a message to remind users to log in to save their data LOW PRIORITY
-    //109. You data is in cookie, if you want to save it your need to register. Long term feature LOW PRIORITY
-    //117. Reset doesn't close the solution notification LOW PRIORITY
-    //123. the level slider issue also occurs when coming from the daily puzzle, not just the tutorial : TEST
-    //127. Move Blogpost to chedoku.com  : LOW PRIORITY
-    //161. Use defer and async to speed up https://javascript.info/script-async-defer
 
-    //136. Level 2 last puzzles are already solved
-    // <a> without the title attribute. <a href="/" title="HOME - HTML Code Tutorials">Click to visit home page.</a>
-    // dynamic loading css https://stackoverflow.com/questions/2099517/how-to-load-in-an-external-css-file-dynamically
+    // 
 ```
 
 

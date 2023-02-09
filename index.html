@@ -107,7 +107,7 @@
       <!-- https://itinerarium.github.io/phoneme-synthesis/?w=/ʧuˈdəʊkuː/ -->
       <p>
       <h2>📜 Chedoku Puzzle Rule: </h2>
-      To solve a <a href="https://www.chedoku.com">Chedoku puzzle</a>
+      To solve a <a href="https://www.chedoku.com" title="Chedoku - a free puzzle game mixing chess, sudoku, and minesweeper" >Chedoku puzzle</a>
       re-arrange the chess pieces to find a solution where the number of pieces threatening each square matches the
       large number in that square.
       White pieces add one to the threat count (+1), while black pieces reduce it by one (-1).
@@ -208,14 +208,14 @@
       small numbers show the actual threat corresponding to the current configuration of pieces on the board. If you
       want, you can turn off the display of the small numbers using the 'hint' setting.
 
-      <h3>What is the difference between a valid solution (yellow notification) and a perfect solution (green
-        notification)?</h3>
+      <h3>What is the difference between a valid solution (yellow notification with ☑️ mark) and a perfect solution (green
+        notification with ✅ mark)?</h3>
       Some puzzles can have more than one solution. If you find a solution where all the squares with large numbers are
       threatened by the correct number of pieces, you found a valid solution. If some extra squares are threatened in
-      addition to the target squares, you receive a yellow notification. If all the squares with large numbers are
+      addition to the target squares, you receive a yellow notification with ☑️ mark. If all the squares with large numbers are
       threatened by the correct number of pieces AND no additional squares are threated (i.e. the threat is zero for all
       squares that do not have a number or a piece on it), you have found a perfect solution and will get a green
-      notification. If you press the ‘solution’ button, you will see a perfect solution.
+      notification with ✅ mark. If you press the ‘solution’ button, you will see a perfect solution.
       For example, in the puzzle below placing pawn on c2 is an imperfect solution but placing it on a2 is a perfect
       solution.
 
@@ -226,15 +226,15 @@
       require you to place two pieces threatening it to get to zero.
 
       <h3>This was too easy, do you have more difficult puzzles?</h3>
-      In the <a href="https://www.chedoku.com">Chedoku home page</a> you can adjust the difficulty of the puzzles by using
+      In the <a href="https://www.chedoku.com" title="Chedoku - a free puzzle game mixing chess, sudoku, and minesweeper" >Chedoku home page</a> you can adjust the difficulty of the puzzles by using
       the
       slider on the top of the page. In general, puzzles with more pieces and puzzles that involve black pieces are more
       difficult.
 
 
       <h3>This was too hard, do you have easier puzzles?</h3>
-      We recommend you start with the <a href="https://www.chedoku.com/#tutorial">Tutorial</a> and then move on to the
-      easier puzzles. In the <a href="https://www.chedoku.com">Chedoku home page</a> you can adjust the difficulty of the
+      We recommend you start with the <a href="https://www.chedoku.com/#tutorial" title="Tutorial for Chedoku boardgame - a free puzzle game mixing chess, sudoku, and minesweeper" >Tutorial</a> and then move on to the
+      easier puzzles. In the <a href="https://www.chedoku.com"  title="Tutorial for Chedoku boardgame - a free puzzle game mixing chess, sudoku, and minesweeper">Chedoku home page</a> you can adjust the difficulty of the
       puzzles by
       using the slider on the top of the page. In general, puzzles with fewer pieces and puzzles that do not use the
       black pieces are easier to solve.
@@ -255,15 +255,19 @@
       <p>
         <a href="https://twitter.com/chedoku"><img
             alt="free sudoku puzzle twitter chedoku chess puzzle game sudoku minesweeper pieces boardgame challenge play online web based browser puzzlegame chessgame chesspuzzle"
+            title="free sudoku puzzle twitter chedoku chess puzzle game sudoku minesweeper pieces boardgame challenge play online web based browser puzzlegame chessgame chesspuzzle"
             src="static/2021 Twitter logo - blue.png" style="max-width:40px;width:100%" loading="lazy"></a>
         <a href="https://www.youtube.com/@chedoku"><img
             alt="solving free sudoku puzzle video chedoku chess puzzle game sudoku minesweeper pieces boardgame challenge play online web based browser puzzlegame chessgame chesspuzzle"
+            title="free sudoku puzzle twitter chedoku chess puzzle game sudoku minesweeper pieces boardgame challenge play online web based browser puzzlegame chessgame chesspuzzle"
             src="static/social/youtube.png" style="max-width:40px;width:100%" loading="lazy"></a>
         <a href="https://chedoku.wordpress.com"><img
             alt="free sudoku puzzle blog chedoku chess puzzle game sudoku minesweeper pieces boardgame challenge play online web based browser puzzlegame chessgame chesspuzzle"
+            title="free sudoku puzzle twitter chedoku chess puzzle game sudoku minesweeper pieces boardgame challenge play online web based browser puzzlegame chessgame chesspuzzle"
             src="static/social/wordpress.svg" style="max-width:30px;width:100%" loading="lazy"></a>
         <a href="https://chedoku.substack.com"><img
             alt="Substack minesweeper chedoku chess puzzle game sudoku minesweeper pieces boardgame challenge play online web based browser puzzlegame chessgame chesspuzzle"
+            title="free sudoku puzzle twitter chedoku chess puzzle game sudoku minesweeper pieces boardgame challenge play online web based browser puzzlegame chessgame chesspuzzle"
             src="static/social/substack.svg" style="max-width:30px;width:100%" loading="lazy"></a>
       </p>
 
@@ -297,7 +301,7 @@
       </span>
       <h4>Privacy Statement </h4>
       <p>
-        The privacy and protection of your data is of great concern to us. <a href="/privacy">The privacy policy
+        The privacy and protection of your data is of great concern to us. <a href="/privacy" title="Privacy policy for Chedoku puzzle board game- a free puzzle game mixing chess, sudoku, and minesweeper" >The privacy policy
           statement</a> describes any collection, usage and disclosure of personal information when using various
         services of our website.
       </p>
@@ -524,6 +528,7 @@
     if (userGameResults == null){
       userGameResults  = []
     }
+    var is_solution_is_pressed = false
 
     var boardElement = $('#board')
     var game = new Chess()
@@ -577,7 +582,7 @@
       board.destroy()
       board = ChessBoard('board', cfg);
       $(window).resize(board.resize)
-      current_puzzle_timer = new Date().getTime();
+      is_solution_is_pressed = true
       boardChangedUpdateGame();
     })
 
@@ -605,7 +610,7 @@
         $('.popup-overlay').fadeOut();
         rules()
       });
-      
+
       $('a.popup-levelpuzzle').click(function () {
         $('.popup-overlay').fadeOut();
         //levelpuzzle()
@@ -696,7 +701,7 @@
       To solve a Chedoku puzzle re-arrange the chess pieces to find a solution where the number of pieces threatening
       each square matches the large number in that square.
 
-      <p style="font-size: 10px">We use Google Analytics that uses cookies. Please see our <a href="/privacy"> Privacy
+      <p style="font-size: 10px">We use Google Analytics that uses cookies. Please see our <a title="Chedoku puzzle board fun adult game, a free puzzle game mixing chess, sudoku, and minesweeper" href="/privacy"> Privacy
           Policy </a> before entering this website.</p>
 
       <a href="javascript:;" class="popup-tutorial">Tutorial</a>
