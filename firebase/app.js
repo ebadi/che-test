@@ -108,7 +108,7 @@ function getUiConfig() {
 // Initialize the FirebaseUI Widget using Firebase.
 var ui = new firebaseui.auth.AuthUI(firebase.auth());
 // Disable auto-sign in.
-ui.disableAutoSignIn();
+// ui.disableAutoSignIn();
 
 
 /**
@@ -233,11 +233,13 @@ function handleConfigChange() {
  * Initializes the app.
  */
 var initApp = function() {
+  console.log("firebase init app")
   document.getElementById('sign-in-with-redirect').addEventListener(
       'click', signInWithRedirect);
   document.getElementById('sign-in-with-popup').addEventListener(
       'click', signInWithPopup);
   document.getElementById('sign-out').addEventListener('click', function() {
+    console.log("signout")
     userGameResults = []
     syncUserGameResults()
     firebase.auth().signOut();
@@ -278,4 +280,5 @@ var initApp = function() {
   */
 };
 
-window.addEventListener('load', initApp);
+//window.addEventListener('load', initApp);
+initApp()

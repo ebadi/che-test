@@ -384,7 +384,7 @@
 
     <div class="mycenter" id="boardcontrol">
       <span id="infodate" style="margin-right:5px;"></span>
-      <span id="infotextAccount" style="margin-right:5px; font-weight: bold;"></span><br>
+      <span id="infotextAccount" style="margin-right:5px;"></span><br>
       <button type="submit" id="solution" class="stylish">
         <i class='material-icons'>emoji_objects_outlined</i> Solution <br>
       </button>
@@ -501,7 +501,7 @@
   <script src="chedokucode/script.js"></script>
 
   <script type="text/javascript">//<![CDATA[
-
+    var firebase_loaded = false
     var game = new Chess();
     var allSquares = ['a1', 'a2', 'a3', 'a4', 'a5', 'a6', 'a7', 'a8', 'b1', 'b2', 'b3', 'b4', 'b5', 'b6', 'b7', 'b8', 'c1', 'c2', 'c3', 'c4', 'c5', 'c6', 'c7', 'c8', 'd1', 'd2', 'd3', 'd4', 'd5', 'd6', 'd7', 'd8', 'e1', 'e2', 'e3', 'e4', 'e5', 'e6', 'e7', 'e8', 'f1', 'f2', 'f3', 'f4', 'f5', 'f6', 'f7', 'f8', 'g1', 'g2', 'g3', 'g4', 'g5', 'g6', 'g7', 'g8', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'h7', 'h8'];
     var defenders = []
@@ -636,8 +636,9 @@
       } else {
         homePuzzle()
       }
-
-      setTimeout(() => loadUserGameFromServer(), 1000)
+      setTimeout(() => firebase(), 1000)
+      setTimeout(() => loadUserGameFromServer(), 2000)
+      setTimeout(() => accountInfoUIrefresh(), 3000)
     });
 
     $('#next').on('click', function () {

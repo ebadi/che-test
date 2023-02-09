@@ -571,7 +571,6 @@ function loadUserGameFromServer() {
 function updateUserGameToServer() {
   // this will sync userGameResults with server
   // console.log(firebase.auth().currentUser.email)
-  const database = firebase.database()
   var database_ref = database.ref()
   user = firebase.auth().currentUser
   if (Object.keys(userGameResults).length > 0) {
@@ -838,7 +837,7 @@ function accountInfoUIrefresh() {
         } else {
           perfect_format = "☑️"
         }
-        prevPuzzleInfo = `&nbsp; Record (Time: ${human_time} &nbsp; Moves:${game_info.m}  ${perfect_format})`
+        prevPuzzleInfo = `<br>Record time: ${human_time} ${perfect_format} Record moves: ${game_info.m}`
       }
     }
   } else {
@@ -869,6 +868,15 @@ function tutorial() {
 }
 
 
+
+
+function login(){
+  disableAllComponents();
+  document.getElementById("login").style.display = "block";
+  window.location.hash = 'login'
+  loadingStatistic()
+}
+
 function loadScript(url) {
 	return new Promise(function(resolve, reject) {
 		let script = document.createElement('script');
@@ -884,35 +892,29 @@ function loadScript(url) {
 	});
 }
 
-
-function login() {
-  console.log("LOGIN")
-  let scripts = [
-    'static/js-css-lib/firebasejs/9.13.0/firebase-app-compat.js',
-    'static/js-css-lib/firebasejs/9.13.0/firebase-auth-compat.js',
-    'static/js-css-lib/firebasejs/9.13.0/firebase-database-compat.js',
-    'firebase/config.js',
-    'firebase/common.js',
-    'firebase/dist/firebaseui.js',
-    'firebase/app.js'
-  ];
-// save all Promises as array
-let promises = [];
-scripts.forEach(function(url) {
-	promises.push(loadScript(url));
-});
-Promise.all(promises)
-.then(function() {
-	console.log('all scripts loaded');
-  disableAllComponents();
-  document.getElementById("login").style.display = "block";
-  window.location.hash = 'login'
-  loadingStatistic()
-}).catch(function(script) {
-	console.log(script + ' failed to load');
-});
-
-
+function firebase() {
+    console.log("Firebase")
+    let scripts = [
+      'static/js-css-lib/firebasejs/9.13.0/firebase-app-compat.js',
+      'static/js-css-lib/firebasejs/9.13.0/firebase-auth-compat.js',
+      'static/js-css-lib/firebasejs/9.13.0/firebase-database-compat.js',
+      'firebase/config.js',
+      'firebase/common.js',
+      'firebase/dist/firebaseui.js',
+      'firebase/app.js'
+    ];
+    // save all Promises as array
+    let promises = [];
+    scripts.forEach(function(url) {
+      promises.push(loadScript(url));
+    });
+    Promise.all(promises)
+    .then(function() {
+      console.log('all scripts loaded');
+      firebase_loaded= true
+    }).catch(function(script) {
+      console.log(script + ' failed to load');
+    });
 }
 
 function rules() {
