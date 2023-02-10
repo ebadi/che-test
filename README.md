@@ -169,7 +169,8 @@
     //136. Level 2 last puzzles are already solved
     // <a> without the title attribute. <a href="/" title="HOME - HTML Code Tutorials">Click to visit home page.</a> : FIXED
     // perfect solution icon to FAQ and notification : FIXED
-
+    //162. Make unsaved message clickable
+    //163. remove readme from prod
 
 
 

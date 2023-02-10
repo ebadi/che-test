@@ -471,6 +471,7 @@ body {
   box-shadow: -2px 2px 3px -1px #aaaaaa;
   padding: 2px 5px;
   border-radius: 3px;
+  cursor: pointer;
 }
 
 
