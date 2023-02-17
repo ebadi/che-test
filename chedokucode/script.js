@@ -109,20 +109,20 @@ function checkSolution() {
       msgtype = "success"
       if (current_level > 2020 && current_level < 2050) {
         socialmedia_text = `I found the perfect solution ✅ for today's (${date}) Chedoku puzzle in ${current_puzzle_moves} moves and ${durStr}.  #chedoku #puzzle #chess Challenge yourself with today's puzzle here: `
-        socialmedia_url = `https://www.chedoku.com/#dailypuzzle`
+        socialmedia_url = `https://chedoku.com/#dailypuzzle`
       } else {
         socialmedia_text = `I found the perfect solution ✅ for this Chedoku puzzle in ${current_puzzle_moves} moves and ${durStr}. #chedoku #puzzle #chess Challenge yourself with the same puzzle here: `
-        socialmedia_url = `https://www.chedoku.com/#gid=${current_puzzleID}&d=${current_level}`
+        socialmedia_url = `https://chedoku.com/#gid=${current_puzzleID}&d=${current_level}`
       }
     } else {
       msg = `Congratulations! You found a valid solution in ${current_puzzle_moves} moves and ${durStr}. You can keep playing to find the perfect solution that has no additional threats on empty squares,   <a href="#Foo" onclick="rules(); return false;">Learn more about rules</a> .`
       msgtype = "warning"
       if (current_level > 2020 && current_level < 2050) {
         socialmedia_text = `I found a solution ☑️ for today's (${date}) Chedoku puzzle in ${current_puzzle_moves} moves and ${durStr}.  #chedoku #puzzle #chess Challenge yourself with today's puzzle here: `
-        socialmedia_url = `https://www.chedoku.com/#dailypuzzle`
+        socialmedia_url = `https://chedoku.com/#dailypuzzle`
       } else {
         socialmedia_text = `I found a solution ☑️ for this Chedoku puzzle in ${current_puzzle_moves} moves and ${durStr}. #chedoku #puzzle #chess Challenge yourself with the same puzzle here: `
-        socialmedia_url = `https://www.chedoku.com/#gid=${current_puzzleID}&d=${current_level}`
+        socialmedia_url = `https://chedoku.com/#gid=${current_puzzleID}&d=${current_level}`
       }
     }
 
