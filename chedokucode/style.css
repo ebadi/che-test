@@ -158,6 +158,13 @@ body {
   margin: 7px;
 }
 
+.footer {
+  width: 400px;
+  padding: 7px;
+  margin: 7px;
+}
+}
+
 .info {
   width: 400px;
   margin: auto;
@@ -495,7 +502,7 @@ body {
 .popup {
   display: inline-block;
   width: 270px;
-  height: 470px;
+  height: 490px;
 
   padding: 10px;
   min-height: 300px;
