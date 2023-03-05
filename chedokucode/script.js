@@ -928,7 +928,9 @@ function about() {
   document.getElementById("about").style.display = "block";
   window.location.hash = 'about'
 }
-
+function blog() {
+    window.location.href = "/blog";
+}
 function subscription() {
   disableAllComponents();
   document.getElementById("mailist").style.display = "block";
@@ -995,6 +997,14 @@ function subscription() {
   }
   document.getElementById('item-login-side').onclick = function (e) {
     login()
+  }
+
+  // blog
+  document.getElementById('item-blog').onclick = function (e) {
+    blog()
+  }
+  document.getElementById('item-blog-side').onclick = function (e) {
+    blog()
   }
 
   // TUTORIAL IS BASICALLY HOME
