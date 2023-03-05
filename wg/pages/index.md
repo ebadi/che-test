@@ -1,4 +1,4 @@
-## Chedoku Puzzle
+# Chedoku Puzzle
 
 ![!image.png](https://www.chedoku.com/static/logox-350.png)
 

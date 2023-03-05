@@ -171,8 +171,9 @@
     // perfect solution icon to FAQ and notification : FIXED
     //162. Make unsaved message clickable
     //163. remove readme from prod
-
-
+    //114. Static blog content: https:/./www.chedoku.com/blog : DONE
+    //115. Adding google tag to the blog : DONE
+    //101. Create a FAQ from Popular posts (links in accounts.txt) : DONE
 
     // 118. Russ Williams  I was going through the tutorial problems (which are very easy
     indeed!) and I saw an apparent bug at problem 30 when I first see
@@ -211,10 +212,11 @@
 https://codepen.io/saharmm/pen/XQQjwq  // 103.  PWA install
     //140. Double click on copy to clipboard causes The following message is copied to the clipboard: "NaN"  : LOW PRIORITY
     //100. One UI suggestion is to use a diverging color palette for the larger numbers so there are different hues for too many versus too few attackers.
-    //101. Create a FAQ from Popular posts (links in accounts.txt)
-    //102. Printer friendly puzzle book
-    //103. Install GA tag on wordpress
 
+    //102. Printer friendly puzzle book
+    //103. Install GA tag on wordpress : NOT NEEDED
+
+ 
     // 
 ```
 
