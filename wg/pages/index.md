@@ -1,6 +1,6 @@
-# Chedoku Puzzle
+# [Chedoku Puzzle](https://chedoku.com/)
 
-![!image.png](https://www.chedoku.com/static/logox-350.png)
+![!image.png](https://www.chedoku.com/static/logox-100.png)
 
 Chedoku is an exciting new chess puzzle that challenges the minds of chess enthusiasts of all skill levels.
 
