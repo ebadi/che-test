@@ -174,7 +174,14 @@
     //114. Static blog content: https:/./www.chedoku.com/blog : DONE
     //115. Adding google tag to the blog : DONE
     //101. Create a FAQ from Popular posts (links in accounts.txt) : DONE
+    //103. Install GA tag on wordpress : NOT NEEDED, INSTALLED ON OWN BLOG
+    //180. Fix style isse : FIXED
 
+
+
+
+
+    
     // 118. Russ Williams  I was going through the tutorial problems (which are very easy
     indeed!) and I saw an apparent bug at problem 30 when I first see
     problem 30 (by clicking "Next" from problem 29): no target numbers are
@@ -214,7 +221,6 @@ https://codepen.io/saharmm/pen/XQQjwq  // 103.  PWA install
     //100. One UI suggestion is to use a diverging color palette for the larger numbers so there are different hues for too many versus too few attackers.
 
     //102. Printer friendly puzzle book
-    //103. Install GA tag on wordpress : NOT NEEDED
 
  
     // 
