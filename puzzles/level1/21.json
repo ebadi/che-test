@@ -1,0 +1,8 @@
+
+    {
+            "puzzlePieces" : {  "h1":"bN" }      ,
+            "puzzleSolution" : {  "h1":"bN" }    ,
+            "puzzleNumbers" : {  "f2":-1, "g3":-1 }     ,
+            "sparePieces" : false,
+            "strictSolution" : false
+    }

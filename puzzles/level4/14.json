@@ -1,0 +1,8 @@
+
+    {
+            "puzzlePieces" : {  "f1":"bR", "f3":"bN" }      ,
+            "puzzleSolution" : {  "f1":"bR", "f3":"bN" }    ,
+            "puzzleNumbers" : {  "a1":-1, "b1":-1, "c1":-1, "d1":-1, "e1":-2, "g1":-2, "h1":-1, "d2":-1, "f2":-1, "h2":-1, "d4":-1, "h4":-1, "e5":-1, "g5":-1 }     ,
+            "sparePieces" : false,
+            "strictSolution" : false
+    }

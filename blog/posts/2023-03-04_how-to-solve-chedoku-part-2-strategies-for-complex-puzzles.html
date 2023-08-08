@@ -1,0 +1,72 @@
+<!DOCTYPE HTML>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+
+    <title>Chedoku Puzzle Blog</title>
+    <meta name="description" content="a free puzzle game mixing sudoku, and minesweeper on chess board Chedoku Puzzle Blog">
+    <meta name="author" content="Chedoku.com">
+    
+    <link rel="stylesheet" href="spectre.min.css">
+    <link rel="stylesheet" href="default.css">
+<style>
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+ text-align: center;
+}
+</style>
+  </head>
+  
+  <header class="navbar">
+    <section class="navbar-section">
+      <a href="https://www.chedoku.com/blog/" class="btn btn-primary">Chedoku Puzzle Blog</a>
+    </section>
+  </header>
+  
+  <body>
+    <div class="content">
+      <h1>how to solve chedoku part 2 strategies for complex puzzles</h1>
+      <h5>2023-03-04</h5>
+      <div class="container grid-lg">
+	<div class="columns">
+	  <div class="column col-xs-1"><p>Simple Chedoku puzzles are [great for learning how chess pieces move]. But as the puzzles get more complex, other strategies are needed to solve them. Similar to other puzzle games like wordle, I implemented a <a href="https://chedoku.com/#dailypuzzle">daily puzzle</a> on my website, where you can challenge yourself.</p>
+<p>The game is a good exercise to improve your understanding of chess piece movements and your chess board vision – the difference to regular chess puzzles is that you are reverse-engineering a chess position from the threat patterns, instead of analyzing the threat patterns based on a given position.</p>
+<p>In addition to the simple visual pattern recognition <a href="https://chedoku.com/blog">from my previous post</a>, I find myself using a mix of the following strategies for most puzzles.</p>
+<p><strong>Aim high</strong>: In puzzles with a few higher numbers, I often try to solve those fields first before figuring out the smaller numbers.</p>
+<p><strong>Limited options</strong>: Sometimes, other pieces or other fields with numbers block the way, so that not all remaining pieces can still threaten the field you are trying to solve. Often, this can become clear after you have placed some pieces that have obvious visual patterns, and you are filling up the gaps next. One example of this can be a number that only one of your remaining unplaced figures can reach – such as a blocked off corner only a knight can threaten. Another example can be a too high threat – such as the queen threatening fields diagonally in addition to the otherwise similar pattern of a rook, giving you a hint which one of the two goes where.</p>
+<p><strong>Blocking</strong>: If your placement of pieces creates a too high threat number, you can sometimes block the threat with other pieces. Often pawns can be useful for this, since they have a very limited threat pattern and thus fewer unintended consequences when used as a blocking piece.</p>
+<p><strong>Hiding</strong>: In some of the more complex games, some pieces remain without directly threatening any other square. If a queen, rook, or bishop are on the board, but their distinctive threat patterns are not visible, they may be surrounded by other pieces. Similarly, a leftover pawn can be hidden in the last rank where it does not have any effect.</p>
+<p><strong>Avoiding overkill</strong>: Although you can to some extend block or hide figures, if your placement threatens too many empty squares, it can be a sign that there is something wrong. This is especially important when you are trying to find a [perfect solution] where you do not threaten any additional squares other than the numbered ones.</p>
+<p><strong>Neutralizing</strong>: When you play games with black pieces on the board, a trail of negative numbers usually reveals their position. However, if there are no negative numbers at all, the effect of the threat by black pieces might be neutralized by white pieces. For example, a black and white bishop in opposite corners of the board will neutralize each other.</p>
+<p>On most days, you can watch me play the <a href="https://chedoku.com/#dailypuzzle">daily puzzle</a> on or if you want to compare your solving strategies to mine 🙂</p>
+<p><a href="https://www.youtube.com/watch?v=KC3UaQqMjdI">Watch Nelson from “Chess Vibes” play and explain the game</a></p>
+<p>Do you have any ideas for other strategies, or implementing an algorithm for finding the solutions? I would love to hear from you!</p>
+</div>
+	</div>
+      </div>
+    </div>
+
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-3281J0VDJP"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'G-3281J0VDJP');
+  </script>
+  
+
+  </body>
+  
+  <footer>
+    <center><p>Copyright © 2023 Chedoku.com</p></center>
+  </footer>
+</html>
+ 

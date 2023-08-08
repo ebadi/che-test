@@ -1,0 +1,77 @@
+<!DOCTYPE HTML>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+
+    <title>Chedoku Puzzle Blog</title>
+    <meta name="description" content="a free puzzle game mixing sudoku, and minesweeper on chess board Chedoku Puzzle Blog">
+    <meta name="author" content="Chedoku.com">
+    
+    <link rel="stylesheet" href="spectre.min.css">
+    <link rel="stylesheet" href="default.css">
+<style>
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+ text-align: center;
+}
+</style>
+  </head>
+  
+  <header class="navbar">
+    <section class="navbar-section">
+      <a href="https://www.chedoku.com/blog/" class="btn btn-primary">Chedoku Puzzle Blog</a>
+    </section>
+  </header>
+  
+  <body>
+    <div class="content">
+      <h1>how i accidentally invented a new type of chess puzzle</h1>
+      <h5>2023-01-06</h5>
+      <div class="container grid-lg">
+	<div class="columns">
+	  <div class="column col-xs-1"><p>Hi chess enthusiasts,
+Chess is a game that requires both deep and broad calculation. A chess grand-master can quickly see twenty moves ahead (depth) and evaluate the overall position of a chess board (breadth) in a blink of an eye.</p>
+<p><img src="https://www.chedoku.com/static/blogimg/blog1-1.png" alt="new browser based novel chess puzzle based on sudoku and minesweeper on a chess board game" /></p>
+<p>One basic step in evaluating a board position is to calculate the number of threats on a piece. A piece that is threatened by several opponent pieces and not protected by an equal number of defending pieces is a potential target for attack. As an example, in the picture below the white benefits from capturing the h5 pawn.</p>
+<p><img src="https://www.chedoku.com/static/blogimg/blog1-2.png" alt="new free novel chess puzzle based on sudoku and minesweeper on a chess board game" /></p>
+<p>A person (and even a game engine) cannot analyze every possible move to the end, but instead uses various techniques to quickly evaluate a position and identify promising candidate moves. This techniques are usually known as pruning.</p>
+<p>A while ago, I was thinking about methods that a chess engine uses to analyze a chess position, so that I can mimic and improve my chess skills. I thought that keeping track of the overall number of threats on a square during a match might be a good approach, as interesting maneuvers tend to happen to pieces on squares which is dominated by the opposite color (the number of threats from black minus the number of threats from white). In the image below, a positive(+) numbers shows that a square is dominated by white and a negative(-) numbers shows that a square is dominated by black. The number itself shows the domination strength. In the chess board before the black pawn on h5 was in a square that was dominated by white (three white pieces against 2 black pieces):</p>
+<p><img src="https://www.chedoku.com/static/blogimg/blog1-3.png" alt="new web based novel chess puzzle based on sudoku and minesweeper on a chess board game" /></p>
+<p>As I was thinking about this and day-dreaming about how to update the threat value array after each move, a game-related question came to mind:
+How can we efficiently and quickly update this threat number table without recalculating everything from scratch?
+While doodling my ideas on an 8×8 table, I forgot about the chess pieces and ended up with an 8×8 board filled with numbers, similar to a Sudoku puzzle* . I had a puzzle to solve, but it was not about adding numbers but adding pieces to the board to figure out the original chess position. It was indeed a difficult riddle. I attempted to solve a few of these puzzles by just having the numbers on the board, but found them to be very difficult or may end up with several solutions. What if we knew the exact pieces on the board but not their positions? This seems to be easier to solve and this is how the idea of Chedoku emerged in mind.
+You can try it at <a href="https://www.chedoku.com">https://www.chedoku.com</a></p>
+<p>I hope you will consider trying my game and solving some Sudoku puzzles. I think you will love it!</p>
+<p>In the next posts I will talk about other different variants of Chedoku.</p>
+<ul>
+<li>Several people later told me that the game is more like Minesweeper, where you search for hidden mines based on numbers revealing how many mines are next to a given square.</li>
+</ul>
+</div>
+	</div>
+      </div>
+    </div>
+
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-3281J0VDJP"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'G-3281J0VDJP');
+  </script>
+  
+
+  </body>
+  
+  <footer>
+    <center><p>Copyright © 2023 Chedoku.com</p></center>
+  </footer>
+</html>
+ 
