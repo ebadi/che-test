@@ -1,0 +1,27 @@
+{
+  "name": "chedoku",
+  "productName": "chedoku",
+  "version": "1.0.0",
+  "description": "Chedoku chess puzzle",
+  "main": "electron.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "keywords": [
+    "chedoku",
+    "chess",
+    "puzzle",
+    "game"
+  ],
+  "author": "Chedoku.com",
+  "license": "ISC",
+  "devDependencies": {
+    "@capacitor/cli": "^5.2.2",
+    "electron": "^25.4.0",
+    "electron-packager": "^17.1.1"
+  },
+  "dependencies": {
+    "@capacitor/android": "^5.2.2",
+    "@capacitor/core": "^5.2.2"
+  }
+}

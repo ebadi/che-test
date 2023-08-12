@@ -18,6 +18,24 @@ function adjustSlider() {
   });
 }
 
+function isOnline() {
+  return 
+  ;
+}
+
+function inApp(){
+  if (window.location.href.toLowerCase().indexOf("chedoku") == -1 
+  && window.location.href.toLowerCase().indexOf("github") == -1 
+    ){
+      console.log("ENV: in App")
+      return true
+    }else{
+      console.log("ENV: NOT in App")
+      return false
+    }
+}
+
+
 function annotateSquare(sq, num, color = 'red') {
   squareObj = document.getElementsByClassName("square-" + sq);
   // console.log(">>>",  sq, square2index(sq), values [square2index(sq)] ,  num )
@@ -316,7 +334,7 @@ function reset() {
 
 function baseUrl() {
   //window.location.href.split('?')[0]
-  return window.location.origin + window.location.pathname;
+  return window.location.origin + window.location.pathname.slice(0, window.location.pathname.lastIndexOf('/'))
 }
 
 function loadAllPuzzles() {
@@ -363,6 +381,8 @@ function loadPuzzle(level, puzzleID) {
       window.location.hash = 'about'
     } else if (window.location.hash == 'rules') {
       window.location.hash = 'rules'
+    } else if (window.location.hash == 'download') {
+      window.location.hash = 'download'
     } else if (window.location.hash == 'login') {
       window.location.hash = 'login'
     } else if (window.location.hash == 'dailypuzzle') {
@@ -798,6 +818,7 @@ function disableAllComponents() {
   //document.getElementById("mailist").style.display = "none";
   document.getElementById("footer").style.display = "none";
   document.getElementById("rules").style.display = "none";
+  document.getElementById("download").style.display = "none";
 }
 
 function currentDate() {
@@ -868,14 +889,23 @@ function tutorial() {
   window.location.hash = 'tutorial'
 }
 
-
+function download() {
+  disableAllComponents();
+  document.getElementById("download").style.display = "block";
+  window.location.hash = 'download'
+}
 
 
 function login(){
-  disableAllComponents();
-  document.getElementById("login").style.display = "block";
-  window.location.hash = 'login'
-  loadingStatistic()
+  if (inApp()){
+    window.location.href = "https://www.chedoku.com/#login";
+  }
+  else{
+    disableAllComponents();
+    document.getElementById("login").style.display = "block";
+    window.location.hash = 'login'
+    loadingStatistic()
+  }
 }
 
 function loadScript(url) {
@@ -929,7 +959,12 @@ function about() {
   window.location.hash = 'about'
 }
 function blog() {
+  if (inApp()){
+    window.location.href = "https://www.chedoku.com/blog";
+  }
+  else{
     window.location.href = "/blog";
+  }
 }
 function subscription() {
   disableAllComponents();
@@ -983,6 +1018,13 @@ function subscription() {
   }
   document.getElementById('item-info-side').onclick = function (e) {
     about()
+  }
+  // DOWNLOAD
+  document.getElementById('item-download').onclick = function (e) {
+    download()
+  }
+  document.getElementById('item-download-side').onclick = function (e) {
+    download()
   }
   // RULES
   document.getElementById('item-rules').onclick = function (e) {
