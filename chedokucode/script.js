@@ -18,21 +18,50 @@ function adjustSlider() {
   });
 }
 
-function isOnline() {
-  return 
-  ;
-}
-
+// github.io, or chedoku.com
 function inApp(){
   if (window.location.href.toLowerCase().indexOf("chedoku") == -1 
   && window.location.href.toLowerCase().indexOf("github") == -1 
     ){
-      console.log("ENV: in App")
       return true
     }else{
-      console.log("ENV: NOT in App")
       return false
     }
+}
+
+function ApplyAppModifications() {
+  document.getElementsByClassName('popup-overlay')[0].remove()
+  document.getElementById('item-blog').remove()
+  document.getElementById('item-blog-side').remove()
+  document.getElementById('item-login-side').remove()
+  document.getElementById('item-login').remove()
+  document.getElementById('item-download-side').remove()
+  document.getElementById('item-download').remove()
+  $('#footer').html("<b>Offline mode</b>: You are not connected to the internet, and your game progress will not be saved.  <button onclick=redirect_if_inapp_chedoku_reachable()>Click here to re-check connectivity</button> &nbsp; &nbsp; <a href=https://www.chedoku.com/privacy>Privacy Policy</a> ")
+}
+
+function redirect_if_inapp_chedoku_reachable() {
+  if (inApp()) {
+    // localhost, app
+    console.log("chedokuApp: loading from localhost or the app, customization activated")
+    document.addEventListener("DOMContentLoaded", (event) => {
+      ApplyAppModifications()
+    });
+    // check if it is connected to internet
+    console.log("chedokuApp: checking internet connectivity")
+    let fetchRes = fetch(
+      "https://chedoku.com/puzzles/list.json?" + Math.random().toString(36));
+    fetchRes.then(res =>
+      res.json()).then(d => {
+        console.log("in app and connected to the internet" + d)
+        if (d != null) {
+          window.location.href = "https://www.chedoku.com/" + window.location.hash + "&#nopopup";
+        }
+      }
+      ).catch(function (error) {
+        console.log('error = ' + error)
+      })
+  }
 }
 
 
@@ -123,7 +152,7 @@ function checkSolution() {
 
   if (! is_solution_is_pressed && solution) {
     if (foundStrictSolution) {
-      msg = `Congratulations! You found the perfect solution ✅ in ${current_puzzle_moves} moves and ${durStr}. Do you want to share it with your friends? `
+      msg = `Congratulations! You found the perfect solution ✅ in ${current_puzzle_moves} moves and ${durStr}. Share it with your friends by clicking here: `
       msgtype = "success"
       if (current_level > 2020 && current_level < 2050) {
         socialmedia_text = `I found the perfect solution ✅ for today's (${date}) Chedoku puzzle in ${current_puzzle_moves} moves and ${durStr}.  #chedoku #puzzle #chess Challenge yourself with today's puzzle here: `
@@ -896,16 +925,11 @@ function download() {
 }
 
 
-function login(){
-  if (inApp()){
-    window.location.href = "https://www.chedoku.com/#login";
-  }
-  else{
-    disableAllComponents();
-    document.getElementById("login").style.display = "block";
-    window.location.hash = 'login'
-    loadingStatistic()
-  }
+function login() {
+  disableAllComponents();
+  document.getElementById("login").style.display = "block";
+  window.location.hash = 'login'
+  loadingStatistic()
 }
 
 function loadScript(url) {
@@ -959,12 +983,7 @@ function about() {
   window.location.hash = 'about'
 }
 function blog() {
-  if (inApp()){
-    window.location.href = "https://www.chedoku.com/blog";
-  }
-  else{
-    window.location.href = "/blog";
-  }
+  window.location.href = "/blog";
 }
 function subscription() {
   disableAllComponents();

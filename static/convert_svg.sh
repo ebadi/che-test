@@ -31,12 +31,11 @@ cp favicon.ico ../favicon.ico
 #    The format can be jpg or png.
 
 
-convert -density 288 -background none  logo-with-circle.svg -resize 1024x1024  -alpha off -fill red -opaque black -alpha on  icon-only.png
-convert -density 288 -background none  logo-with-circle.svg -resize 1024x1024  -alpha off -fill red -opaque black -alpha on  icon-foreground.png
-convert -density 288 -background none  logo-with-circle.svg -resize 1024x1024  -alpha off -fill red -opaque black -alpha on  icon-background.png
-convert -density 288 -background none  logo-with-circle.svg -resize 2732x2732  -alpha off -fill red -opaque black -alpha on  splash.png
-convert -density 288 -background none  logo-with-circle.svg -resize 2732x2732  -alpha off -fill red -opaque black -alpha on  splash-dark.png
-
+convert -density 288 -background none  logo-with-circle.svg -gravity center -resize 1024x1024 -extent 1200x1200 -alpha off -opaque black -alpha on  icon-only.png
+convert -density 288 -background none  logo-with-circle.svg -gravity center -resize 1024x1024 -extent 1200x1200 -alpha off -opaque black -alpha on  icon-foreground.png
+convert -density 288 -background none  logo-with-circle.svg -gravity center -resize 1024x1024 -extent 1200x1200 -alpha off -opaque black -alpha on  icon-background.png
+convert -density 288 -background white logo-with-circle.svg -gravity center -resize 500x500 -extent 3000x3000 -alpha off -opaque red -alpha off  splash.png
+convert -density 288 -background white logo-with-circle.svg -gravity center -resize 500x500 -extent 3000x3000 -alpha off -opaque red -alpha off  splash-dark.png
 
 
 

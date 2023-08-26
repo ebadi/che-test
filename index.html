@@ -27,7 +27,7 @@
   <!-- FIREBASE -->
 
   <link rel="manifest" href="firebase/manifest.json">
-
+  <script src="capacitor.js"></script>
   <script type="text/javascript" src="static/js-css-lib/jquery/jquery-3.6.3.min.js"></script>
   <script type="text/javascript" src="static/js-css-lib/chess.min.js"></script>
   <script type="text/javascript" src="static/js-css-lib/chessboardjs/chessboard-1.0.0.min.js"></script>
@@ -580,6 +580,9 @@
 
 
   <script type="text/javascript">//<![CDATA[
+
+    redirect_if_inapp_chedoku_reachable()
+    var showPopup = true
     var firebase_loaded = false
     var game = new Chess();
     var allSquares = ['a1', 'a2', 'a3', 'a4', 'a5', 'a6', 'a7', 'a8', 'b1', 'b2', 'b3', 'b4', 'b5', 'b6', 'b7', 'b8', 'c1', 'c2', 'c3', 'c4', 'c5', 'c6', 'c7', 'c8', 'd1', 'd2', 'd3', 'd4', 'd5', 'd6', 'd7', 'd8', 'e1', 'e2', 'e3', 'e4', 'e5', 'e6', 'e7', 'e8', 'f1', 'f2', 'f3', 'f4', 'f5', 'f6', 'f7', 'f8', 'g1', 'g2', 'g3', 'g4', 'g5', 'g6', 'g7', 'g8', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'h7', 'h8'];
@@ -632,17 +635,6 @@
       document.getElementById("switch-move").value = "on"
     }
 
-    if (inApp()){
-      console.log("app customization activated")
-      window.onload = function ApplyAppModifications() {
-        document.getElementsByClassName('popup-overlay')[0].remove()
-        document.getElementById('item-blog').remove()
-        document.getElementById('item-blog-side').remove()
-        document.getElementById('item-login-side').remove()
-        document.getElementById('item-login').remove()
-      }
-    }
-
     $('#reset').on('click', function () {
       reset()
       boardChangedUpdateGame();
@@ -675,7 +667,9 @@
 
 
     $(document).ready(function () {
-      if (!window.location.hash.includes('daily')) {
+      if (!window.location.hash.includes('daily') &&
+          !window.location.hash.includes('nopopup')
+      ) {
         // daily puzzles are exceptional, not overlay popup is needed
         $('.popup-overlay').css("display", "flex").hide().fadeIn();
       }

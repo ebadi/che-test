@@ -42,6 +42,5 @@
       "sizes": "512x512",
       "purpose": "any maskable"
     }
-  ],
-  "background_color": "#ff0000"
+  ]
 }
