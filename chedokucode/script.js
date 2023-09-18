@@ -55,7 +55,8 @@ function redirect_if_inapp_chedoku_reachable() {
       res.json()).then(d => {
         console.log("in app and connected to the internet" + d)
         if (d != null) {
-          window.location.href = "https://www.chedoku.com/" + window.location.hash + "&#nopopup";
+          // redirect 
+          window.location.href = "https://chedoku.com/" + window.location.hash + "&#nopopup";
         }
       }
       ).catch(function (error) {
@@ -215,8 +216,8 @@ async function copyContent() {
 //}
 
 function influence(boardElement, fen) {
-  defenders = allSquares.map(s => countSquareDefenders(boardElement, fen, s, true))
-  attackers = allSquares.map(s => countSquareDefenders(boardElement, fenForOtherSide(fen), s, false))
+  defenders = allSquares.map(s => countSquareDefenders(boardElement, fen, s))
+  attackers = allSquares.map(s => countSquareDefenders(boardElement, fenForOtherSide(fen), s))
   var styleNotation = 'numeric-top-right'
 
   allSquares.forEach(function (square, i) {
@@ -235,7 +236,7 @@ function influence(boardElement, fen) {
   });
 }
 
-function countSquareDefenders(boardElement, fen, square, me) {
+function countSquareDefenders(boardElement, fen, square) {
   var chess = new Chess(fenForOtherSide(fen));
   //console.log("countSquareDefenders", chess.fen())
   var oppositeColor = chess.turn() == 'w' ? 'b' : 'w'
@@ -244,7 +245,7 @@ function countSquareDefenders(boardElement, fen, square, me) {
   var somePiece = chess.remove(square); // remove my piece if any
   chess.remove(queenSquare); // remove his king
   chess.put({ // put queen in the square
-    type: 'q',
+    type: 'p',
     color: oppositeColor
   }, square);
 
