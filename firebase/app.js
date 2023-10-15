@@ -19,7 +19,40 @@
 /**
  * @return {!Object} The FirebaseUI config.
  */
-function getUiConfig() {
+function getUiConfig(inApp=false) {
+  if (inApp){
+    signInOptions = [
+      {
+        provider: firebase.auth.EmailAuthProvider.PROVIDER_ID,
+        iconUrl: 'firebase/logo/mail.svg',
+        requireDisplayName: true,
+        signInMethod: getEmailSignInMethod(),
+        disableSignUp: {
+          status: getDisableSignUpStatus()
+        }
+      }
+    ]
+  }else{
+    signInOptions = [
+      // TODO(developer): Remove the providers you don't need for your app.
+      {
+        provider: firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+        iconUrl: 'firebase/logo/google.svg',
+        // Required to enable ID token credentials for this provider.
+        clientId: CLIENT_ID
+      },
+      {
+        provider: firebase.auth.EmailAuthProvider.PROVIDER_ID,
+        // Whether the display name should be displayed in Sign Up page.
+        iconUrl: 'firebase/logo/mail.svg',
+        requireDisplayName: true,
+        signInMethod: getEmailSignInMethod(),
+        disableSignUp: {
+          status: getDisableSignUpStatus()
+        }
+      }
+    ]
+  }
   return {
     'callbacks': {
       // Called when the user has been successfully signed in.
@@ -34,64 +67,7 @@ function getUiConfig() {
       },
     // Opens IDP Providers sign-in flow in a popup.
     'signInFlow': 'popup',
-    'signInOptions': [
-      // TODO(developer): Remove the providers you don't need for your app.
-      {
-        provider: firebase.auth.GoogleAuthProvider.PROVIDER_ID,
-        iconUrl: 'firebase/logo/google.svg',
-        // Required to enable ID token credentials for this provider.
-        clientId: CLIENT_ID
-      },
-      {
-        provider: firebase.auth.FacebookAuthProvider.PROVIDER_ID,
-        iconUrl: 'firebase/logo/facebook.svg',
-        scopes :[
-          'public_profile',
-          'email',
-          'user_likes',
-          'user_friends'
-        ]
-      },
-      /*
-      {
-        provider: firebase.auth.TwitterAuthProvider.PROVIDER_ID,
-        iconUrl: 'firebase/logo/twitter.svg'
-      },
-      */
-      /*
-      firebase.auth.GithubAuthProvider.PROVIDER_ID,
-      */
-      {
-        provider: firebase.auth.EmailAuthProvider.PROVIDER_ID,
-        // Whether the display name should be displayed in Sign Up page.
-        iconUrl: 'firebase/logo/mail.svg',
-        requireDisplayName: true,
-        signInMethod: getEmailSignInMethod(),
-        disableSignUp: {
-          status: getDisableSignUpStatus()
-        }
-      }
-      /*
-      ,
-      {
-        provider: firebase.auth.PhoneAuthProvider.PROVIDER_ID,
-        recaptchaParameters: {
-          size: getRecaptchaMode()
-        },
-      },
-      {
-        provider: 'microsoft.com',
-        loginHintKey: 'login_hint'
-      },
-      {
-        provider: 'apple.com',
-      },
-      */
-
-      /*
-      firebaseui.auth.AnonymousAuthProvider.PROVIDER_ID
-      */
-    ],
+    'signInOptions': signInOptions,
     // Terms of service url.
     'tosUrl': '/privacy',
     // Privacy policy url.
@@ -172,7 +148,7 @@ var handleSignedInUser = function(user) {
 var handleSignedOutUser = function() {
   document.getElementById('user-signed-in').style.display = 'none';
   document.getElementById('user-signed-out').style.display = 'block';
-  ui.start('#firebaseui-container', getUiConfig());
+  ui.start('#firebaseui-container', getUiConfig(chedokucomInApp));
   // CHEDOKU code
   accountInfoUIrefresh()
 };
@@ -225,7 +201,7 @@ function handleConfigChange() {
       currentAdminRestrictedOperationStatus);
   // Reset the inline widget so the config changes are reflected.
   ui.reset();
-  ui.start('#firebaseui-container', getUiConfig());
+  ui.start('#firebaseui-container', getUiConfig(chedokucomInApp));
 }
 
 
@@ -244,13 +220,13 @@ var initApp = function() {
     syncUserGameResults()
     firebase.auth().signOut();
   });
-  /*
+/*
   document.getElementById('delete-account').addEventListener(
       'click', function() {
         deleteAccount();
       });
-  */
-  /*
+
+
   document.getElementById('recaptcha-normal').addEventListener(
       'change', handleConfigChange);
   document.getElementById('recaptcha-invisible').addEventListener(
@@ -259,7 +235,7 @@ var initApp = function() {
   document.querySelector(
       'input[name="recaptcha"][value="' + getRecaptchaMode() + '"]')
       .checked = true;
-
+*/
   document.getElementById('email-signInMethod-password').addEventListener(
       'change', handleConfigChange);
   document.getElementById('email-signInMethod-emailLink').addEventListener(
@@ -277,7 +253,7 @@ var initApp = function() {
       'change', handleConfigChange);
   document.getElementById("admin-restricted-operation-status").checked =
       getAdminRestrictedOperationStatus();
-  */
+
 };
 
 //window.addEventListener('load', initApp);

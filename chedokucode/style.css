@@ -103,12 +103,12 @@
 
 .alert .inner,
 .alert .close {
-  color: rgb(88, 88, 88);
+  color: rgb(180, 42, 42);
 }
 
 .alert .close {
   float: right;
-  margin: 3px 12px 0px 0px;
+  margin: 0px 10px 0px 0px;
   cursor: pointer;
 }
 
@@ -569,7 +569,7 @@ a.popup-levelpuzzle {
   margin-left: 2rem;
 
   &:last-of-type {
-    margin-right: 0;
+    /*! margin-right: 0; */
   }
 }
 
