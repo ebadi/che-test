@@ -1,0 +1,16 @@
+<svg width="260" height="260" viewBox="0 0 260 260" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect width="260" height="260" fill="white"/>
+<path d="M85 28L26 102L58 127.5L85 98L145.5 49.5L85 127.5V180H181V28H85Z" fill="black"/>
+<path d="M181 185H85V193L58 204.5V217.5H204V204.5L181 193V185Z" fill="black"/>
+<path d="M85 28L26 102L58 127.5L85 98L145.5 49.5L85 127.5V180H181V28H85Z" stroke="black"/>
+<path d="M181 185H85V193L58 204.5V217.5H204V204.5L181 193V185Z" stroke="black"/>
+<path d="M58 82.5L73 112L78.5 105.5L58 82.5Z" fill="white"/>
+<path d="M171 53.5V164H97L163.5 157L171 53.5Z" fill="white"/>
+<path d="M107.5 194L78.5 204.5L147.5 194H107.5Z" fill="white"/>
+<path d="M110.5 53.5H82.5L110.5 48.5V53.5Z" fill="white"/>
+<path d="M58 82.5L73 112L78.5 105.5L58 82.5Z" stroke="white"/>
+<path d="M171 53.5V164H97L163.5 157L171 53.5Z" stroke="white"/>
+<path d="M107.5 194L78.5 204.5L147.5 194H107.5Z" stroke="white"/>
+<path d="M110.5 53.5H82.5L110.5 48.5V53.5Z" stroke="white"/>
+<circle cx="130" cy="130" r="125" stroke="black" stroke-width="10"/>
+</svg>

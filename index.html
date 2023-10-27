@@ -116,6 +116,9 @@
       re-arrange the chess pieces to find a solution where the number of pieces threatening each square matches the
       large number in that square.
       White pieces add one to the threat count (+1), while black pieces reduce it by one (-1).
+<br>
+      <img style="max-width:400px;width:100%" alt="playing chedoku game play" src="static/videos/1-lowres.gif" loading="lazy"> </img>
+<br>
       </p>
       <a href="https://www.youtube.com/watch?v=KC3UaQqMjdI?feature=share&t=34">
         Watch Nelson from “Chess Vibes” play Chedoku and explain the game
@@ -403,8 +406,6 @@
       <p class="dense"><a rel="nofollow noopener"
           href="https://github.com/jhlywa/chess.js/issues/186#issuecomment-433949649">How to find defended and
           attacked pieces?</a> Permission granted from vitogit on 2021/11/9</p>
-      <p class="dense"><a rel="nofollow noopener" href="https://openai.com/dall-e-2/"> Images and artwork </a> DALL·E by
-        OpenAI</p>
 
       <p><b>To design a new puzzle:</b> Use alt+'y' to display the board's json file, alt+'n' to reset the board.</p>
 
@@ -468,7 +469,7 @@
 
       <label id="moveswitch" class="switch" style="margin:0px;">
         <input type="checkbox" class="switch-input" id="switch-move">
-        <span class="switch-label" data-on="Click" data-off="Drag"></span>
+        <span class="switch-label" data-on="Pick" data-off="Drag"></span>
         <span class="switch-handle"></span>
       </label>
 
@@ -670,7 +671,7 @@
 
 
     $(document).ready(function () {
-      if (!window.location.hash.includes('daily') && !chedokucomInApp
+      if (firstVisit() && !window.location.hash.includes('daily') && !chedokucomInApp
       ) {
         // daily puzzles are exceptional, not overlay popup is needed
         $('.popup-overlay').css("display", "flex").hide().fadeIn();
@@ -788,16 +789,22 @@
 
   <div class="popup-overlay" style="display: none;">
     <div class="popup">
-      <img src="static/logo-with-circle350x350.png" alt="Chedoku puzzle minesweeper" class="popupcenter">
+      <img src="static/logo-with-circle100x100.png" height="60px" alt="Chedoku puzzle minesweeper" class="popupcenter">
 
       To solve a Chedoku puzzle re-arrange the chess pieces to find a solution where the number of pieces threatening
       each square matches the large number in that square.
+      <p>
+        <img style="max-width:200px;width:100%" alt="playing chedoku game play" src="static/videos/1-lowres.gif" loading="lazy"> </img>
+      </p>
+      <!--
       <p>
         <a href="https://www.youtube.com/live/KC3UaQqMjdI?feature=share&t=34"> Watch Nelson from "Chess Vibes" play and
           explain the game <img alt="Solving CHEDOKU Puzzles by Chess Vibes Chessvibes"
             title="Solving CHEDOKU Puzzles by Chess Vibes Chessvibes" src="static/social/youtube.png"
             style="max-width:20px" loading="lazy"></a>
       </p>
+      -->
+
 
 
       <p style="font-size: 10px">We use Google Analytics that uses cookies. Please see our <a
