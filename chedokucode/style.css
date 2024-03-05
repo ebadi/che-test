@@ -191,7 +191,7 @@ body {
   position: relative;
   display: inline-block;
   vertical-align: top;
-  width: 70px;
+  width: 75px;
   height: 40px;
   padding: 3px;
   /* background-color: white; */
@@ -373,6 +373,22 @@ body {
   -moz-box-shadow: inset 0 0 3px 3px yellow;
   box-shadow: inset 0 0 3px 3px yellow;
 }
+.menu {
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  border-bottom: 0;
+}
+
+.menu li {
+  display: table-cell;
+  width: 1%;
+  float: none;
+  border: 1px solid green;
+  margin: 2px;
+  padding: 30px;
+  text-align: center;
+}
 
 .smallnumber{
   background: rgba(0, 0, 0, 0.3);
@@ -515,7 +531,7 @@ body {
 .popup {
   display: inline-block;
   width: 300px;
-  height: 570px;
+  height: 580px;
 
   padding: 10px;
   min-height: 300px;
@@ -535,7 +551,7 @@ p {
   /*padding: 0 1rem; */
   margin: 0;
   margin-top: 0.5rem;
-  margin-bottom: -0.5rem;
+  margin-bottom: 0.5rem;
 }
 
 
@@ -551,7 +567,7 @@ div.slider p {
 a.popup-daily,
 a.popup-tutorial,
 a.popup-login {
-  margin-top: 10px;
+  margin-top: 5px;
   display: inline-block;
   color: white;
   background-color: #3b91b3;
@@ -769,8 +785,8 @@ nav ul {
 }
 
 nav ul li {
-  /*display: flex;*/
-  /* flex-direction:column; */
+  display: flex;
+  flex-direction:column;
   align-items: center;
   margin-right: 30px;
   /*max-width: 80px;*/

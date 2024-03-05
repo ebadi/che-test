@@ -12,21 +12,33 @@
     content="Chedoku web-based puzzle game, playing soduko/minesweeper on chess board.">
   <meta property="og:url" content="https://chedoku.com" />
   <meta property="og:type" content="website" />
-  <meta property="og:image" content="/static/logo350x350.png" />
+  <meta property="og:image" content="static/logo350x350.png" />
   <meta property="og:description" content="Chedoku - a free puzzle game mixing chess, sudoku, and minesweeper" />
   <meta property="og:type" content="website" />
-
+  <meta prefix="og: http://ogp.me/ns#" /> 
   <meta http-equiv="content-type" content="text/html; charset=UTF-8">
   <meta name="robots" content="index, follow">
+
+	<meta name="msapplication-TileColor" content="#000000">
+	<meta name="msapplication-TileImage" content="static/logo144x144.png">
+	<meta name="msapplication-config" content="browserconfig.xml">
+	<meta name="theme-color" content="#000000">
+
+  <link rel="manifest" href="manifest.json">
+	<link rel="mask-icon" href="static/logo.svg" color="#000000">
+
   <!-- There is a problem in cute alert that caused images not to load properly, otherwise the line below would be enough-->
   <link rel="canonical" href="https://chedoku.com" />
   <link rel="canonical" href="http://chedoku.com" />
   <link rel="apple-touch-icon" sizes="57x57" href="static/logo57x57.png">
   <link rel="apple-touch-icon" sizes="180x180" href="static/logo180x180.png">
+
+	<link rel="icon" type="image/png" sizes="32x32" href="static/logo32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="static/logo16x16.png">
+	<link rel="shortcut icon" href="favicon.ico">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
   <!-- FIREBASE -->
 
-  <link rel="manifest" href="firebase/manifest.json">
   <script type="text/javascript" src="static/js-css-lib/jquery/jquery-3.6.3.min.js"></script>
   <script type="text/javascript" src="static/js-css-lib/chess.min.js"></script>
   <script type="text/javascript" src="static/js-css-lib/chessboardjs/chessboard-1.0.0.min.js"></script>
@@ -48,10 +60,20 @@
     "@context": "http://schema.org",
     "@type": "WebPage",
     "name": "Chedoku Puzzles Games",
-    "image": "https://chedoku.com/static/logo-with-circle350x350.png",
+    "image": "https://chedoku.com/static/logo350x350.png",
     "url": "https://chedoku.com"
   }
   </script>
+	<!-- Javscript -->
+	<script>
+		if ("serviceWorker" in navigator) {
+			window.addEventListener("load", () => {
+				navigator.serviceWorker && navigator.serviceWorker.register("./sw.js");
+			});
+		}
+	</script>
+	<script defer src="./main.js"></script>
+
 </head>
 
 <body>
@@ -65,14 +87,14 @@
     gtag('config', 'G-3281J0VDJP');
   </script>
 
-  <header>
+  <header id="xx">
     <div class='primary-header-content'>
       <i class='menu-icon material-icons'>menu</i>
       <h1><a style="color: inherit;text-decoration: none;" href="/">Chedoku Puzzles</a></h1>
     </div>
     <div class='secondary-header-content'>
       <nav>
-        <ul>
+        <ul class="topmenu">
           <li id="item-home"><i class='material-icons'>home</i>Home</li>
           <li id="item-login"><i class='material-icons'>login</i>Login</li>
           <li id="item-blog"><i class='material-icons'>newspaper</i>Blog</li>
@@ -81,6 +103,7 @@
           <li id="item-download"><i class='material-icons'>download</i>Download</li>
           <li id="item-rules"><i class='material-icons'>rules</i>Rules</li>
           <li id="item-daily"><i class='material-icons'>today</i>Today's Puzzle</li>
+          <li id="item-darkmode"><i class='material-icons'>dark_mode</i>Dark</li>
           <!--  <li id="item-mailist"><i class='material-icons'>attach_email</i>Puzzle Newsletter</li> -->
         </ul>
       </nav>
@@ -98,6 +121,7 @@
         <li id="item-download-side"><i class='material-icons'>download</i>Downloads</li>
         <li id="item-rules-side"><i class='material-icons'>rules</i>Rules</li>
         <li id="item-daily-side"><i class='material-icons'>today</i>Today's Puzzle</li>
+        <li id="item-darkmode-side"><i class='material-icons'>dark_mode</i>Dark mode</li>
         <!--  <li id="item-mailist-side"><i class='material-icons'>attach_email</i>Puzzle Newsletter</li> -->
       </ul>
     </nav>
@@ -106,8 +130,8 @@
 
     <div style="display:none" class="mycenter-text" id="rules">
 
-      <img src="static/logo-with-circle350x350.png" alt="Chedoku, playing soduko on a chess board"
-        style="max-width:300px" loading="lazy">
+      <img src="static/logo.svg" alt="Chedoku, playing soduko on a chess board"
+        style="max-width:200px; margin: 25px;" loading="lazy">
       <!-- https://itinerarium.github.io/phoneme-synthesis/?w=/ʧuˈdəʊkuː/ -->
       <p>
       <h2>📜 Chedoku Puzzle Rule: </h2>
@@ -124,7 +148,7 @@
         Watch Nelson from “Chess Vibes” play Chedoku and explain the game
       <img style="max-width:400px;width:100%"
             alt="Watch Nelson from “Chess Vibes” play Chedoku and explain the game"
-            src="static/rules/chess-vibe.png" loading="lazy">
+            src="static/news-images/chess-vibe.png" loading="lazy">
       </img>
       </a>
       <p>
@@ -277,6 +301,13 @@
       <svg xmlns="http://www.w3.org/2000/svg" height="5em" viewBox="0 0 448 512" style="fill:#1c71d8"><path d="M0 93.7l183.6-25.3v177.4H0V93.7zm0 324.6l183.6 25.3V268.4H0v149.9zm203.8 28L448 480V268.4H203.8v177.9zm0-380.6v180.1H448V32L203.8 65.7z"/></svg>
     </a>
   </p>
+  Android:
+  <p>
+    <a href="https://www.chedoku.com/packages/chedoku-android.apk">
+      <svg xmlns="http://www.w3.org/2000/svg" height="5em" viewBox="0 0 576 512" style="fill:#2ec27e"><path d="M420.55,301.93a24,24,0,1,1,24-24,24,24,0,0,1-24,24m-265.1,0a24,24,0,1,1,24-24,24,24,0,0,1-24,24m273.7-144.48,47.94-83a10,10,0,1,0-17.27-10h0l-48.54,84.07a301.25,301.25,0,0,0-246.56,0L116.18,64.45a10,10,0,1,0-17.27,10h0l47.94,83C64.53,202.22,8.24,285.55,0,384H576c-8.24-98.45-64.54-181.78-146.85-226.55"/></svg>
+    </a>
+  </p>
+  
   Linux:
   <p>
     <a href="https://drive.google.com/drive/folders/1ivG_jsVVCrcJONqvEYlCv0xdiY5svpJe?usp=drive_link#chedoku-linux.zip">
@@ -289,12 +320,7 @@
       <svg xmlns="http://www.w3.org/2000/svg" height="5em" viewBox="0 0 384 512" style="fill:#9a9996"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg>
     </a>
   </p>
-  Android:
-  <p>
-    <a href="https://www.chedoku.com/packages/chedoku-android.apk">
-      <svg xmlns="http://www.w3.org/2000/svg" height="5em" viewBox="0 0 576 512" style="fill:#2ec27e"><path d="M420.55,301.93a24,24,0,1,1,24-24,24,24,0,0,1-24,24m-265.1,0a24,24,0,1,1,24-24,24,24,0,0,1-24,24m273.7-144.48,47.94-83a10,10,0,1,0-17.27-10h0l-48.54,84.07a301.25,301.25,0,0,0-246.56,0L116.18,64.45a10,10,0,1,0-17.27,10h0l47.94,83C64.53,202.22,8.24,285.55,0,384H576c-8.24-98.45-64.54-181.78-146.85-226.55"/></svg>
-    </a>
-  </p>
+
 
 </div>
 
@@ -315,7 +341,7 @@
         <a href="https://www.chedoku.com/blog"><img
             alt="free sudoku puzzle blog chedoku chess puzzle game sudoku minesweeper pieces boardgame challenge play online web based browser puzzlegame chessgame chesspuzzle"
             title="free sudoku puzzle twitter chedoku chess puzzle game sudoku minesweeper pieces boardgame challenge play online web based browser puzzlegame chessgame chesspuzzle"
-            src="static/logo-with-circle.svg" style="max-width:40px;width:100%" loading="lazy"></a>
+            src="static/logo.svg" style="max-width:40px;width:100%" loading="lazy"></a>
         <a href="https://www.youtube.com/@chedoku"><img
             alt="solving free sudoku puzzle video chedoku chess puzzle game sudoku minesweeper pieces boardgame challenge play online web based browser puzzlegame chessgame chesspuzzle"
             title="free sudoku puzzle twitter chedoku chess puzzle game sudoku minesweeper pieces boardgame challenge play online web based browser puzzlegame chessgame chesspuzzle"
@@ -330,32 +356,53 @@
       <h4>On News</h4>
       <span class="myspan">
         <div class="sliderXXXX">
-          <p> 💬 "Combining math and chess: new type of puzzle"
+
+
+
+        <a href="https://www.youtube.com/watch?v=KC3UaQqMjdI?feature=share&t=34">
+          Watch National Master (NM) Nelson Lopez from “Chess Vibes” speed-run Chedoku
+        <img style="max-width:400px;width:100%"
+              alt="Watch Nelson from “Chess Vibes” play Chedoku and explain the game"
+              src="static/news-images/chess-vibe.png" loading="lazy">
+        </img>
+        </a>
+
+
+
+        <a href="https://www.youtube.com/watch?v=DMRLNgqfefE">
+          Watch International Master (IM) Eric Rosen speed run the Chedoku puzzles
+        <img style="max-width:400px;width:100%"
+              alt="Watch Nelson from “Chess Vibes” play Chedoku and explain the game"
+              src="static/news-images/eric-rosen.png" loading="lazy">
+        </img>
+        </a>
+
+          <p style="border-style: dotted; padding: 10px"> 💬 "Combining math and chess: new type of puzzle"
             <br> <a rel="noindex, nofollow" style="text-decoration: none"
               href="https://twitter.com/danheisman/status/1626612168283025408">Dan Heisman</a>, US Chess Federation
             National Master (NM) and a FIDE Candidate Master (CM).
           </p>
-          <p> 💬 "Do you like Sudoku? Do you like chess? then you might like this - Chedoku! It's safer than Chess
+          <p style="border-style: dotted; padding: 10px"> 💬 "Do you like Sudoku? Do you like chess? then you might like this - Chedoku! It's safer than Chess
             Boxing"
-            <br> - Adam Raoof, <a rel="noindex, nofollow" style="text-decoration: none"
+            <br style="border-style: dotted; padding: 10px"> - Adam Raoof, <a rel="noindex, nofollow" style="text-decoration: none"
               href="https://chesscircuit.substack.com/p/looking-forward-to-chess-in-2023">The Chess Circuit</a>, The
             Chess England, FIDE IA, IO and chess writer
           </p>
-          <p> 💬 "I like it! Fun way to improve your understanding of the pieces' abilities." <br> - <a
+          <p style="border-style: dotted; padding: 10px"> 💬 "I like it! Fun way to improve your understanding of the pieces' abilities." <br> - <a
               rel="noindex, nofollow" style="text-decoration: none" href="https://www.natesolon.com/">Nathan Solon</a>,
             Chess master, Former poker pro, Data scientist </p>
-          <p> 💬 "Nieuw soort schaakpuzzels, de chedoku! Wie sudoku's en schaakproblemen leuk vindt zal misschien in
+          <p style="border-style: dotted; padding: 10px"> 💬 "Nieuw soort schaakpuzzels, de chedoku! Wie sudoku's en schaakproblemen leuk vindt zal misschien in
             chedoku een leuke combinatie van beiden vinden." <br> - <a rel="noindex, nofollow"
               style="text-decoration: none"
               href="http://www.probleemblad.nl/index.php/laatste-nieuws/1514-nieuw-soort-schaakpuzzels-de-chedoku">Nederlandse
               bond van schaakprobleemvrienden</a>,
             Dutch association of chess problem friends</p>
-          <p> 💬 "New find!! I'm being distracted by @chedoku puzzles when work starts soon! 🤩 My students will 🖤
+          <p style="border-style: dotted; padding: 10px"> 💬 "New find!! I'm being distracted by @chedoku puzzles when work starts soon! 🤩 My students will 🖤
             these @ChessPlus
             #visualisation #reasoning + & -" <br> - <a rel="noindex, nofollow" style="text-decoration: none"
               href="https://twitter.com/hari_neo21/status/1630855812993228800">hari_neo</a>,
             ♟️Primary chess tutor 🦉Curious Maths teacher</p>
-          <p> 💬 "Chedoku is exactly what it sounds like - Sudoku, but played with Chess pieces. It's a simple concept
+          <p style="border-style: dotted; padding: 10px"> 💬 "Chedoku is exactly what it sounds like - Sudoku, but played with Chess pieces. It's a simple concept
             but it's been executed to perfection. Includes countless levels, each of which can be scaled up through 20
             difficulty modes and there's also a daily puzzle. Countless hours of entertainment." <br> - <a
               rel="noindex, nofollow" style="text-decoration: none"
@@ -469,13 +516,13 @@
 
       <label id="moveswitch" class="switch" style="margin:0px;">
         <input type="checkbox" class="switch-input" id="switch-move">
-        <span class="switch-label" data-on="Pick" data-off="Drag"></span>
+        <span class="switch-label" data-on="PICK" data-off="DRAG"></span>
         <span class="switch-handle"></span>
       </label>
 
       <label id="hintswitch" class="switch" style="margin:0px;">
         <input type="checkbox" class="switch-input" id="switch-hint">
-        <span class="switch-label" data-on="Clear" data-off="Hint"></span>
+        <span class="switch-label" data-on=" ̶H̶I̶N̶T̶" data-off="HINT"></span>
         <span class="switch-handle"></span>
       </label>
 
@@ -609,7 +656,7 @@
       userGameResults = []
     }
     var is_solution_is_pressed = false
-
+    var darkmode = true
     var boardElement = $('#board')
     var squareClass = 'square-55d63'
     var squareToHighlight = null
@@ -789,7 +836,7 @@
 
   <div class="popup-overlay" style="display: none;">
     <div class="popup">
-      <img src="static/logo-with-circle100x100.png" height="60px" alt="Chedoku puzzle minesweeper" class="popupcenter">
+      <img src="static/logo.svg" height="60px" alt="Chedoku puzzle minesweeper" class="popupcenter">
 
       To solve a Chedoku puzzle re-arrange the chess pieces to find a solution where the number of pieces threatening
       each square matches the large number in that square.

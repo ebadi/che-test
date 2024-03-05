@@ -1,46 +1,66 @@
 {
-  "icons": [
-    {
-      "src": "../icons/icon-48.webp",
-      "type": "image/png",
-      "sizes": "48x48",
-      "purpose": "any maskable"
-    },
-    {
-      "src": "../icons/icon-72.webp",
-      "type": "image/png",
-      "sizes": "72x72",
-      "purpose": "any maskable"
-    },
-    {
-      "src": "../icons/icon-96.webp",
-      "type": "image/png",
-      "sizes": "96x96",
-      "purpose": "any maskable"
-    },
-    {
-      "src": "../icons/icon-128.webp",
-      "type": "image/png",
-      "sizes": "128x128",
-      "purpose": "any maskable"
-    },
-    {
-      "src": "../icons/icon-192.webp",
-      "type": "image/png",
-      "sizes": "192x192",
-      "purpose": "any maskable"
-    },
-    {
-      "src": "../icons/icon-256.webp",
-      "type": "image/png",
-      "sizes": "256x256",
-      "purpose": "any maskable"
-    },
-    {
-      "src": "../icons/icon-512.webp",
-      "type": "image/png",
-      "sizes": "512x512",
-      "purpose": "any maskable"
-    }
-  ]
+  "name": "Chedoku Chess Puzzle",
+  "short_name": "Chedoku",
+  "start_url": "./?utm_source=pwa_install",
+	"scope": ".",
+  "display": "standalone",
+  "lang": "en-US",
+  "description": "Chedoku is a free puzzle game mixing sudoku, and minesweeper on chess board running on browser. Have fun solving daily online web puzzles.",
+  "prefer_related_applications": false,
+  "background_color": "#000",
+  "theme_color": "#000",
+  "orientation": "portrait-primary",
+	"icons":[
+        {
+            "src": "static/logo36x36.png",
+            "sizes": "36x36",
+            "type": "image/png"
+        },
+        {
+            "src": "static/logo48x48.png",
+            "sizes": "48x48",
+            "type": "image/png"
+        },
+        {
+            "src": "static/logo72x72.png",
+            "sizes": "72x72",
+            "type": "image/png"
+        },
+        {
+            "src": "static/logo96x96.png",
+            "sizes": "96x96",
+            "type": "image/png"
+        },
+        {
+            "src": "static/logo144x144.png",
+            "sizes": "144x144",
+            "type": "image/png"
+        },
+        {
+            "src": "static/logo192x192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "static/logo256x256.png",
+            "sizes": "256x256",
+            "type": "image/png"
+        },
+        {
+            "src": "static/logo384x384.png",
+            "sizes": "384x384",
+            "type": "image/png"
+        },
+        {
+            "src": "static/logo512x512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        },
+        {
+            "src": "static/logo650x650.png",
+            "sizes": "650x650",
+            "type": "image/png",
+            "purpose": "maskable"
+        }
+	]
 }
