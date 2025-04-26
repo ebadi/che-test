@@ -1,0 +1,8 @@
+
+    {
+            "puzzlePieces" : {  "f2":"wB", "g2":"wR", "h2":"wR", "h3":"wB", "d4":"wP", "g4":"wN", "c5":"wP", "g8":"wN" }      ,
+            "puzzleSolution" : {  "f2":"wB", "g2":"wR", "h2":"wR", "h3":"wB", "d4":"wP", "g4":"wN", "c5":"wP", "g8":"wN" }    ,
+            "puzzleNumbers" : {  "e1":1, "g1":2, "h1":1, "e3":2, "g3":2, "h4":1, "e5":2, "b6":1, "d6":1, "f6":2, "h6":2, "e7":1 }     ,
+            "sparePieces" : false,
+            "strictSolution" : false
+    }

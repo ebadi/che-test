@@ -137,9 +137,7 @@
       <h2>📜 Chedoku Puzzle Rule: </h2>
       To solve a <a href="https://chedoku.com"
         title="Chedoku - a free puzzle game mixing chess, sudoku, and minesweeper">Chedoku puzzle</a>
-      re-arrange the chess pieces to find a solution where the number of pieces threatening each square matches the
-      large number in that square.
-      White pieces add one to the threat count (+1), while black pieces reduce it by one (-1).
+        , rearrange the chess pieces so that the number of threats to each square matches the large number shown on it. White pieces increase the threat count by one (+1), while black pieces decrease it by one (−1).
 <br>
       <img style="max-width:400px;width:100%" alt="playing chedoku game play" src="static/videos/1-lowres.gif" loading="lazy"> </img>
 <br>
@@ -521,7 +519,7 @@
       </label>
 
       <label id="hintswitch" class="switch" style="margin:0px;">
-        <input type="checkbox" class="switch-input" id="switch-hint">
+        <input type="checkbox" class="switch-input" id="switch-hint" checked>
         <span class="switch-label" data-on=" ̶H̶I̶N̶T̶" data-off="HINT"></span>
         <span class="switch-handle"></span>
       </label>
@@ -663,7 +661,7 @@
     var squareSource = null
     var squareDestination = null
     var currentDraggable = false
-    var currentShowHint = true
+    var currentShowHint = false
     var userPuzzlesFromServer = false
 
     function isTouchDevice() {
@@ -762,8 +760,9 @@
       });
 
       $('input[id="switch-hint"]').click(function () {
-        currentShowHint = !$(this).prop("checked")
-        reset();
+        currentShowHint = !currentShowHint
+        $('div.smallnumber').remove();
+        //reset();
         boardChangedUpdateGame();
       });
       if (window.location.hash.includes('daily')) {
@@ -838,8 +837,7 @@
     <div class="popup">
       <img src="static/logo.svg" height="60px" alt="Chedoku puzzle minesweeper" class="popupcenter">
 
-      To solve a Chedoku puzzle re-arrange the chess pieces to find a solution where the number of pieces threatening
-      each square matches the large number in that square.
+      To solve a Chedoku puzzle, rearrange the chess pieces so that the number of threats to each square matches the large number shown on it. You win when all the numbers turn green.
       <p>
         <img style="max-width:200px;width:100%" alt="playing chedoku game play" src="static/videos/1-lowres.gif" loading="lazy"> </img>
       </p>
