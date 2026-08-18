@@ -8,6 +8,14 @@ header {
     margin-bottom: 50px;
 }
 
+footer {
+    margin-top: 50px;
+    padding-top: 20px;
+    border-top: 1px solid #e5e5e5;
+    text-align: center;
+    color: #888;
+}
+
 .content {
     padding-left: 50px;
     padding-right: 50px;
@@ -17,8 +25,18 @@ header {
     width: 100%;
   }
   
-@media (max-width: 480px)
+@media (max-width: 480px) {
   .col-xs-1, .col-xs-10, .col-xs-11, .col-xs-12, .col-xs-2, .col-xs-3, .col-xs-4, .col-xs-5, .col-xs-6, .col-xs-7, .col-xs-8, .col-xs-9, .col-xs-auto {
     -ms-flex: none;
     flex: none;
   }
+}
+
+.post-content h1,
+.post-content h2,
+.post-content h3,
+.post-content h4,
+.post-content h5,
+.post-content h6 {
+  text-align: center;
+}

@@ -1,0 +1,8 @@
+
+    {
+            "puzzlePieces" : {  "h1":"bQ" }      ,
+            "puzzleSolution" : {  "h1":"bQ" }    ,
+            "puzzleNumbers" : {  "a1":-1, "b1":-1, "c1":-1, "d1":-1, "e1":-1, "f1":-1, "g1":-1, "g2":-1, "h2":-1, "f3":-1, "h3":-1, "e4":-1, "h4":-1, "d5":-1, "h5":-1, "c6":-1, "h6":-1, "b7":-1, "h7":-1, "a8":-1, "h8":-1 }     ,
+            "sparePieces" : false,
+            "strictSolution" : false
+    }
