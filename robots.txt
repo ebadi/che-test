@@ -1,4 +1,0 @@
-User-agent: *
-Disallow:
-
-Sitemap: https://chedoku.com/sitemap.xml
