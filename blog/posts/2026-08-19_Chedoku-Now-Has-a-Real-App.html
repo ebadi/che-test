@@ -1,0 +1,71 @@
+<!DOCTYPE HTML>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Chedoku Puzzle Blog</title>
+    <meta name="description" content="a free puzzle game mixing sudoku, and minesweeper on chess board Chedoku Puzzle Blog">
+    <meta name="author" content="Chedoku.com">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="spectre.min.css">
+    <link rel="stylesheet" href="default.css">
+<style>
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+ text-align: center;
+}
+</style>
+  </head>
+
+  <body>
+    <header class="navbar">
+      <section class="navbar-section">
+        <a href="https://www.chedoku.com/blog/" class="btn btn-primary">Chedoku Puzzle Blog</a>
+      </section>
+    </header>
+
+    <div class="content">
+      <h1>Chedoku Now Has a Real App</h1>
+      <h5>2026-08-19</h5>
+      <div class="container grid-lg">
+	<div class="columns">
+	  <div class="column col-xs-1"><p>Hi everyone,</p>
+<p>The last few days have been the busiest Chedoku has seen since I first put the game online. I finally rewrote it from the ground up as a proper Expo/React Native app — one codebase that runs on Android, iOS, and the web — and chedoku.com itself now runs on that same app instead of the old jQuery site. A lot of small things came along with the rewrite, so here's a rundown.</p>
+<p><strong>Sign in and pick up where you left off.</strong> You can now sign in with Google or email, and your solved puzzles and best times sync to your account instead of staying stuck on one device. There's also a daily reminder notification if you want a nudge to do the day's puzzle.</p>
+<p><strong>A real &quot;How to Play.&quot;</strong> New players used to get dropped straight onto a puzzle with no explanation. There's now a short guided onboarding flow when you first open the app, plus a step-by-step tutorial (with a little spotlight that walks you around the board) if you want a deeper walkthrough later from Settings.</p>
+<p><strong>A place to set pieces aside.</strong> This is the newest one — while solving, you can now drag a piece off the board entirely, into a row of reserved squares just below it, to get it out of the way while you think through the rest of the position. It doesn't count toward any square's threat numbers while it's parked there, and you can drag it back up whenever you want. The tutorial walks through it too.</p>
+<p><strong>New look.</strong> The knight-in-a-grid logo you'll see now replaces the old icon everywhere — app icon, splash screen, favicon, the works — and the blog got a cleaner editorial redesign to match.</p>
+<p><strong>Housekeeping.</strong> Twitter login has been gone for a while (RIP), and now the old Capacitor-based mobile build is retired too, replaced entirely by this Expo app. Native Android builds are also easier to produce now — there's a script that handles the whole &quot;old machine, no Android Studio installed&quot; situation for me.</p>
+<p>One more thing worth mentioning directly, since it affects your data: the app now uses Google Analytics to help me understand how people actually use it, but only if you say yes — you'll see a one-time prompt asking for consent (matching what the <a href="https://www.chedoku.com/privacy">privacy policy</a> already promised), and nothing gets sent to Google until you accept. You can change your mind anytime from Settings.</p>
+<p>That's the big stuff. As always, if something looks broken or you have ideas, reach out — a lot of what's in this app started as feedback from people playing it.</p>
+</div>
+	</div>
+      </div>
+    </div>
+
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-3281J0VDJP"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'G-3281J0VDJP');
+  </script>
+
+    <footer>
+      <center><p>Copyright © 2026 Chedoku.com</p></center>
+    </footer>
+  </body>
+</html>
