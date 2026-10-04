@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Get the Chedoku App</title>
+<meta name="robots" content="noindex">
+<style>
+  body {
+    margin: 0;
+    background: #F4F1EA;
+    color: #1E2A38;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    text-align: center;
+  }
+  .content { max-width: 480px; margin: 0 auto; padding: 40px 24px; }
+  h1 { margin-bottom: 8px; }
+  p { line-height: 1.55; margin: 8px 0; }
+  .qr { width: 220px; height: 220px; margin: 16px auto; display: block; background: #fff; padding: 8px; border-radius: 12px; }
+  .stores a {
+    display: block;
+    margin: 10px auto;
+    max-width: 260px;
+    padding: 12px 16px;
+    background: #3b91b3;
+    color: #fff;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: 600;
+  }
+  .stores a:hover { background: #2d7290; }
+  .back a { color: #3b91b3; }
+  .redirect { display: none; }
+</style>
+</head>
+<body>
+<div class="content">
+  <div id="redirect" class="redirect">
+    <h1>Opening the store</h1>
+    <p>If nothing happens, use one of the links below.</p>
+  </div>
+  <div id="scan">
+    <h1>Get the Chedoku App</h1>
+    <p>Scan this code with your phone camera.</p>
+    <img class="qr" src="../branding/get-app-qr.png" alt="QR code that opens the Chedoku download page">
+    <p>Or open a store directly.</p>
+  </div>
+  <div class="stores">
+    <a href="https://play.google.com/store/apps/details?id=com.nordara.chedoku">Google Play</a>
+    <a href="https://apps.apple.com/app/id6807831096">App Store</a>
+  </div>
+  <p class="back"><a href="../">Play in the browser</a></p>
+</div>
+<script>
+  (function () {
+    var ua = navigator.userAgent || '';
+    var target = null;
+    // iPadOS Safari reports a Mac user agent, so check for touch support.
+    if (/iPhone|iPad|iPod/i.test(ua) || (/Macintosh/.test(ua) && navigator.maxTouchPoints > 1)) {
+      target = 'https://apps.apple.com/app/id6807831096';
+    } else if (/Android/i.test(ua)) {
+      target = 'https://play.google.com/store/apps/details?id=com.nordara.chedoku';
+    }
+    if (target) {
+      document.getElementById('scan').style.display = 'none';
+      document.getElementById('redirect').style.display = 'block';
+      window.location.replace(target);
+    }
+  })();
+</script>
+</body>
+</html>
